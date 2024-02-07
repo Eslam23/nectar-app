@@ -17,6 +17,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.1"
+  bottom_bar_page_transition:
+    dependency: "direct main"
+    description:
+      name: bottom_bar_page_transition
+      sha256: "31c336240bbe9c1486c67fd3aec8b27c7d126de78ec9094e64c57117d338b0ad"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0"
   characters:
     dependency: transitive
     description:
@@ -70,6 +78,22 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_dropdown_search:
+    dependency: "direct main"
+    description:
+      name: flutter_dropdown_search
+      sha256: "6d245cec7bc0185331144182e1d1e2e0106f9cf06d426d1433d281538fc4022c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.4"
+  flutter_image_slideshow:
+    dependency: "direct main"
+    description:
+      name: flutter_image_slideshow
+      sha256: ed259d96aea889b6ddc2b641891c3b721ec8ed33e160f08f2ef11acf0438984f
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.6"
   flutter_lints:
     dependency: "direct dev"
     description:

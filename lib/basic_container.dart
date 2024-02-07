@@ -3,24 +3,27 @@ import 'package:untitled/utilies/color_data.dart';
 
 import 'features/sign_with/sign_with_view.dart';
 class BasicContainer extends StatelessWidget {
-  /*final double wid;
-  final double heig;*/
-  const BasicContainer({Key? key, /*required this.wid, required this.heig*/}) : super(key: key);
+  final double wid;
+  final double heig;
+  final Function() fun;
+  final EdgeInsets edgeInsets;
+  final String txtButton;
+  const BasicContainer({Key? key, required this.wid, required this.heig, required this.fun, required this.edgeInsets, required this.txtButton}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return  GestureDetector(
-      onTap: (){Navigator.of(context).push(MaterialPageRoute(builder: (_)=>const SignWithView()));},
+      onTap: fun,
       child: Container(
-        margin: EdgeInsets.only(bottom: MediaQuery.of(context).size.height *.02),
-        width: MediaQuery.of(context).size.width *.84,
-        height: MediaQuery.of(context).size.height *.09,
+        margin: edgeInsets,
+        width: wid,
+        height: heig,
         decoration: BoxDecoration(
           color: ColorsData.basicColor,
           borderRadius: BorderRadius.circular(19),
         ),
-        child: const Center(
-          child: Text('Get Started',style: TextStyle(color: Colors.white,fontSize: 18,fontFamily: 'Gilroy',fontWeight: FontWeight.w600),),
+        child:  Center(
+          child: Text(txtButton,style: const TextStyle(color: Colors.white,fontSize: 16,fontFamily: 'Gilroy',fontWeight: FontWeight.w500),),
         ),
       ),
     );
