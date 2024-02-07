@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/features/shop/view/widget/row_header.dart';
 import 'package:untitled/features/shop/view/widget/textfield_search.dart';
-import 'package:untitled/utilies/color_data.dart';
 
 import '../../../../carrot_image.dart';
+import 'groceries_container.dart';
+import 'item_container.dart';
 
 class ShopViewBody extends StatelessWidget {
   const ShopViewBody({Key? key}) : super(key: key);
@@ -12,70 +13,122 @@ class ShopViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(
+          bottom: MediaQuery.of(context).size.height * .02,
           left: MediaQuery.of(context).size.width * .05,
           right: MediaQuery.of(context).size.width * .05,
           top: MediaQuery.of(context).size.height * .05),
-      child: Column(
-        children: [
-          CarrotImage(
-            wid: MediaQuery.of(context).size.width * .05,
-            heig: MediaQuery.of(context).size.height * .05,
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * .002,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                'asset/home/Exclude.png',
-                fit: BoxFit.contain,
-                width: 18,
-                height: 18,
-              ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width * .01,
-              ),
-              Text(
-                'Dhaka, Banassre',
-                style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 16,
-                    fontFamily: 'Gilroy'),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * .02,
-          ),
-          TextFieldSearch(),
-          SizedBox(
-            height: 20,
-          ),
-          RowHeader(txtHeader: 'Exclusive Offer',seeAll: 'See all',),
-          SizedBox(
-            height: 20,
-          ),
-          Container(
-            padding: EdgeInsets.only(top: 30,right: 15,left: 15,bottom: 15),
-            width: 173,
-            height: 248,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(19),
-              border: Border.all(color: Color(0xFFE2E2E2))
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            CarrotImage(
+              wid: MediaQuery.of(context).size.width * .05,
+              heig: MediaQuery.of(context).size.height * .05,
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            SizedBox(
+              height: MediaQuery.of(context).size.height * .002,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Center(child: Image.asset('asset/home/92f1ea7dcce3b5d06cd1b1418f9b9413 3.png',fit: BoxFit.contain,width: 107,height: 67,)),
-                SizedBox(height: 30,),
-                Text('Organic Banana',style: TextStyle(fontSize: 14,fontFamily: 'fonts/Gilroy-Bold.ttf',fontWeight: FontWeight.w500),),
-                SizedBox(height: 10,),
-                Text('1kg, Priceg',style: TextStyle(),)
+                const Icon(
+                  Icons.place_rounded,
+                  size: 20,
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * .01,
+                ),
+                const Text(
+                  'Dhaka, Banassre',
+                  style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 16,
+                      fontFamily: 'Gilroy'),
+                ),
               ],
             ),
-          ),
-        ],
+            SizedBox(
+              height: MediaQuery.of(context).size.height * .02,
+            ),
+            const TextFieldSearch(),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * .025,
+            ),
+            const RowHeader(
+              txtHeader: 'Exclusive Offer',
+              seeAll: 'See all',
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * .025,
+            ),
+            SizedBox(
+              width: double.infinity,
+              height: MediaQuery.of(context).size.height * .31,
+              child: ListView.builder(
+                itemBuilder: (context, index) {
+                  return ItemContainer();
+                },
+                scrollDirection: Axis.horizontal,
+                itemCount: 4,
+              ),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * .025,
+            ),
+            const RowHeader(
+              txtHeader: 'Best Selling',
+              seeAll: 'See all',
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * .025,
+            ),
+            SizedBox(
+              width: double.infinity,
+              height: MediaQuery.of(context).size.height * .31,
+              child: ListView.builder(
+                itemBuilder: (context, index) {
+                  return ItemContainer();
+                },
+                scrollDirection: Axis.horizontal,
+                itemCount: 4,
+              ),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * .025,
+            ),
+            const RowHeader(
+              txtHeader: 'Groceries',
+              seeAll: 'See all',
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * .025,
+            ),
+            SizedBox(
+              width: double.infinity,
+              height: MediaQuery.of(context).size.height *.13,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  return GroceriesContainer();
+                },
+                itemCount: 4,
+              ),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * .025,
+            ),
+            SizedBox(
+              width: double.infinity,
+              height: MediaQuery.of(context).size.height * .31,
+              child: ListView.builder(
+                itemBuilder: (context, index) {
+                  return ItemContainer();
+                },
+                scrollDirection: Axis.horizontal,
+                itemCount: 4,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
