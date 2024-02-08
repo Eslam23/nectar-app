@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/features/product_details/product_details_view.dart';
 import 'package:untitled/features/shop/view/widget/row_header.dart';
 import 'package:untitled/features/shop/view/widget/textfield_search.dart';
 
@@ -65,7 +66,12 @@ class ShopViewBody extends StatelessWidget {
               height: MediaQuery.of(context).size.height * .31,
               child: ListView.builder(
                 itemBuilder: (context, index) {
-                  return ItemContainer();
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (_)=>ProductDetailsView()));
+                    },
+                    child: ItemContainer(),
+                  );
                 },
                 scrollDirection: Axis.horizontal,
                 itemCount: 4,
@@ -104,7 +110,7 @@ class ShopViewBody extends StatelessWidget {
             ),
             SizedBox(
               width: double.infinity,
-              height: MediaQuery.of(context).size.height *.13,
+              height: MediaQuery.of(context).size.height * .13,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
