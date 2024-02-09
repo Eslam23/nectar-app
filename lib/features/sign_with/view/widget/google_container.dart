@@ -21,7 +21,7 @@ class GoogleContainer extends StatelessWidget {
             SizedBox(width: MediaQuery.of(context).size.width *.035,),
             Image.asset(imag,width: 60,height: 35,fit: BoxFit.contain,),
             SizedBox(width: MediaQuery.of(context).size.width *.04,),
-            Text(txtButton,style: const TextStyle(fontSize: 18,fontFamily: 'Gilroy',fontWeight: FontWeight.w600,color: Colors.white),),
+            Text(txtButton,style: const TextStyle(color: Colors.white,fontSize: 16,fontFamily: 'Gilroy',fontWeight: FontWeight.w500),),
           ],
         ),
       ),

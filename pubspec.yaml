@@ -72,6 +72,8 @@ flutter:
     - asset/home/
     - asset/product_details/
     - asset/beverage/
+    - asset/favourite/
+    - asset/cart/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
