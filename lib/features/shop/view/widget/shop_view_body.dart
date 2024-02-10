@@ -1,14 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/features/product_details/product_details_view.dart';
+import 'package:untitled/features/shop/view/widget/row_address.dart';
 import 'package:untitled/features/shop/view/widget/row_header.dart';
 import 'package:untitled/features/shop/view/widget/textfield_search.dart';
-
+import 'package:untitled/utilies/styles.dart';
 import '../../../../carrot_image.dart';
 import 'groceries_container.dart';
 import 'item_container.dart';
 
-class ShopViewBody extends StatelessWidget {
-  const ShopViewBody({Key? key}) : super(key: key);
+class ShopViewBody extends StatefulWidget {
+  const ShopViewBody({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  State<ShopViewBody> createState() => _ShopViewBodyState();
+}
+
+class _ShopViewBodyState extends State<ShopViewBody> {
 
   @override
   Widget build(BuildContext context) {
@@ -28,25 +37,7 @@ class ShopViewBody extends StatelessWidget {
             SizedBox(
               height: MediaQuery.of(context).size.height * .002,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Icon(
-                  Icons.place_rounded,
-                  size: 20,
-                ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * .01,
-                ),
-                const Text(
-                  'Dhaka, Banassre',
-                  style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 16,
-                      fontFamily: 'Gilroy'),
-                ),
-              ],
-            ),
+            const RowAddress(),
             SizedBox(
               height: MediaQuery.of(context).size.height * .02,
             ),
@@ -68,13 +59,21 @@ class ShopViewBody extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return GestureDetector(
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (_)=>ProductDetailsView()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (_) => ProductDetailsView()));
                     },
-                    child: ItemContainer(),
+                    child: ItemContainer(
+                      img:ListsData.listExclusive[index]['image'],
+                      price: ListsData.listExclusive[index]['price'],
+                      size: ListsData.listExclusive[index]['size'],
+                      name: ListsData.listExclusive[index]['name'],
+                    ),
                   );
                 },
                 scrollDirection: Axis.horizontal,
-                itemCount: 4,
+                itemCount: ListsData.listExclusive.length,
               ),
             ),
             SizedBox(
@@ -92,10 +91,15 @@ class ShopViewBody extends StatelessWidget {
               height: MediaQuery.of(context).size.height * .31,
               child: ListView.builder(
                 itemBuilder: (context, index) {
-                  return ItemContainer();
+                  return ItemContainer(
+                    img: ListsData.listBest[index]['image'],
+                    price: ListsData.listBest[index]['price'],
+                    size: ListsData.listBest[index]['size'],
+                    name: ListsData.listBest[index]['name'],
+                  );
                 },
                 scrollDirection: Axis.horizontal,
-                itemCount: 4,
+                itemCount: ListsData.listBest.length,
               ),
             ),
             SizedBox(
@@ -114,9 +118,9 @@ class ShopViewBody extends StatelessWidget {
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
-                  return GroceriesContainer();
+                  return GroceriesContainer(img: ListsData.listCategoryGroceries[index]['image'], name:  ListsData.listCategoryGroceries[index]['name'],);
                 },
-                itemCount: 4,
+                itemCount: ListsData.listCategoryGroceries.length,
               ),
             ),
             SizedBox(
@@ -127,10 +131,15 @@ class ShopViewBody extends StatelessWidget {
               height: MediaQuery.of(context).size.height * .31,
               child: ListView.builder(
                 itemBuilder: (context, index) {
-                  return ItemContainer();
+                  return ItemContainer(
+                    img: ListsData.listGroceries[index]['image'],
+                    price: ListsData.listGroceries[index]['price'],
+                    size: ListsData.listGroceries[index]['size'],
+                    name: ListsData.listGroceries[index]['name'],
+                  );
                 },
                 scrollDirection: Axis.horizontal,
-                itemCount: 4,
+                itemCount: ListsData.listGroceries.length,
               ),
             ),
           ],

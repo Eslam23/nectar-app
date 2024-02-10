@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 
 import '../../../../utilies/color_data.dart';
 class ItemContainer extends StatelessWidget {
-  const ItemContainer({Key? key}) : super(key: key);
+  final String img;
+  final String name;
+  final String price;
+  final String size;
+  const ItemContainer({Key? key, required this.img, required this.price, required this.size, required this.name, }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +27,7 @@ class ItemContainer extends StatelessWidget {
         children: [
           Center(
               child: Image.asset(
-                'asset/home/92f1ea7dcce3b5d06cd1b1418f9b9413 3.png',
+                img,
                 fit: BoxFit.contain,
                 width: MediaQuery.of(context).size.width *.3,
                 height: MediaQuery.of(context).size.height  *.08,
@@ -31,8 +35,8 @@ class ItemContainer extends StatelessWidget {
           SizedBox(
             height: MediaQuery.of(context).size.height *.04,
           ),
-          const Text(
-            'Organic Banana',
+           Text(
+            name,
             style: TextStyle(
                 fontSize: 14,
                 fontFamily: 'fonts/Gilroy-Bold.ttf',
@@ -41,8 +45,8 @@ class ItemContainer extends StatelessWidget {
           SizedBox(
             height: MediaQuery.of(context).size.height *.01,
           ),
-          const Text(
-            '1kg, Priceg',
+           Text(
+            size,
             style: TextStyle(
                 color: Colors.grey,
                 fontSize: 12,
@@ -54,8 +58,8 @@ class ItemContainer extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
-                '\$4.99',
+               Text(
+                price,
                 style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w500,

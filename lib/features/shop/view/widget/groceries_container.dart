@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class GroceriesContainer extends StatelessWidget {
-  const GroceriesContainer({Key? key}) : super(key: key);
+  final String img;
+  final String name;
+  const GroceriesContainer({Key? key, required this.img, required this.name}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,14 +20,14 @@ class GroceriesContainer extends StatelessWidget {
             Padding(
               padding:  EdgeInsets.only(left: MediaQuery.of(context).size.width *.05,right: MediaQuery.of(context).size.width *.06),
               child: Image.asset(
-                'asset/home/4215936-pulses-png-8-png-image-pulses-png-409_409 1.png',
+                img,
                 fit: BoxFit.contain,
                 width: MediaQuery.of(context).size.width * .2,
                 height: MediaQuery.of(context).size.height*.2,
               ),
             ),
             Text(
-              'Pulses',
+             name,
               style: TextStyle(
                   fontFamily: 'Gilroy',
                   fontSize: 18,

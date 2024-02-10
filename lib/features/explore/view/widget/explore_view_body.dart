@@ -15,10 +15,10 @@ class ExploreViewBody extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text('Find Products',style: TextStyle(fontFamily:'fonts/Gilroy-Bold.ttf' ,fontWeight:FontWeight.w600,fontSize: 20),),
+         const  Text('Find Products',style: TextStyle(fontFamily:'fonts/Gilroy-Bold.ttf' ,fontWeight:FontWeight.w600,fontSize: 20),),
           SizedBox(height: MediaQuery.of(context).size.height *.03,),
-          TextFieldSearch(),
-          GridItems(),
+         const TextFieldSearch(),
+        const   GridItems(),
         ],
       ),
     );

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/basic_container.dart';
-import 'package:untitled/features/cart/cart_view.dart';
 import 'package:untitled/features/product_details/view/widget/counter_price.dart';
 
 import 'image_slider.dart';
 import 'list_expansion.dart';
 
 class ProductDetailsViewBody extends StatefulWidget {
-  const ProductDetailsViewBody({Key? key}) : super(key: key);
+/*final int id;*/
+  const ProductDetailsViewBody({Key? key,  /*required this.id*/}) : super(key: key);
 
   @override
   State<ProductDetailsViewBody> createState() => _ProductDetailsViewBodyState();
@@ -15,8 +15,16 @@ class ProductDetailsViewBody extends StatefulWidget {
 
 class _ProductDetailsViewBodyState extends State<ProductDetailsViewBody> {
 
+ /* late Map<String ,dynamic> product = {};
+  @override
+  void initState() {
+    product = getProductById(widget.id);
+    super.initState();
+  }*/
+
   @override
   Widget build(BuildContext context) {
+
 
     return Padding(
       padding: EdgeInsets.only(
@@ -39,6 +47,7 @@ class _ProductDetailsViewBodyState extends State<ProductDetailsViewBody> {
                     size: 20,
                   )),
               Image.asset(
+               // product['image'],
                 'asset/product_details/Vector (3).png',
                 fit: BoxFit.contain,
                 width: 20,
@@ -50,11 +59,12 @@ class _ProductDetailsViewBodyState extends State<ProductDetailsViewBody> {
           SizedBox(
             height: MediaQuery.of(context).size.height * .02,
           ),
-          const Row(
+           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 'Naturel Red Apple',
+                //product['name'],
                 style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.w500,

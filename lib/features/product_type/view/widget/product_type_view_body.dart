@@ -13,10 +13,10 @@ class ProductTypeViewBody extends StatelessWidget {
         children: [
           ListTile(
             trailing: Image.asset('asset/beverage/Group 6839.png',fit: BoxFit.contain,),
-            leading:GestureDetector(onTap: (){Navigator.pop(context);},child: Icon(Icons.arrow_back_ios,size: 20,)) ,
-            title: Center(child: Text('Beverages',style: TextStyle(fontSize: 20,fontFamily: 'fonts/Gilroy-Bold.ttf',),)),
+            leading:GestureDetector(onTap: (){Navigator.pop(context);},child:const Icon(Icons.arrow_back_ios,size: 20,)) ,
+            title:const Center(child: Text('Beverages',style: TextStyle(fontSize: 20,fontFamily: 'fonts/Gilroy-Bold.ttf',),)),
           ),
-          GridProductType(),
+          const GridProductType(),
         ],
       ),
     );
