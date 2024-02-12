@@ -6,8 +6,11 @@ import 'image_slider.dart';
 import 'list_expansion.dart';
 
 class ProductDetailsViewBody extends StatefulWidget {
-/*final int id;*/
-  const ProductDetailsViewBody({Key? key,  /*required this.id*/}) : super(key: key);
+
+  const ProductDetailsViewBody({Key? key,  required this.name,required this.price,required this.size}) : super(key: key);
+  final String name;
+  final String size;
+  final  num price;
 
   @override
   State<ProductDetailsViewBody> createState() => _ProductDetailsViewBodyState();
@@ -15,17 +18,8 @@ class ProductDetailsViewBody extends StatefulWidget {
 
 class _ProductDetailsViewBodyState extends State<ProductDetailsViewBody> {
 
- /* late Map<String ,dynamic> product = {};
-  @override
-  void initState() {
-    product = getProductById(widget.id);
-    super.initState();
-  }*/
-
   @override
   Widget build(BuildContext context) {
-
-
     return Padding(
       padding: EdgeInsets.only(
           bottom: MediaQuery.of(context).size.height * .02,
@@ -47,7 +41,6 @@ class _ProductDetailsViewBodyState extends State<ProductDetailsViewBody> {
                     size: 20,
                   )),
               Image.asset(
-               // product['image'],
                 'asset/product_details/Vector (3).png',
                 fit: BoxFit.contain,
                 width: 20,
@@ -55,7 +48,7 @@ class _ProductDetailsViewBodyState extends State<ProductDetailsViewBody> {
               ),
             ],
           ),
-          ImageSlider(),
+          const ImageSlider(),
           SizedBox(
             height: MediaQuery.of(context).size.height * .02,
           ),
@@ -63,22 +56,21 @@ class _ProductDetailsViewBodyState extends State<ProductDetailsViewBody> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Naturel Red Apple',
-                //product['name'],
-                style: TextStyle(
+                widget.name,
+                style: const TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.w500,
                     fontFamily: 'fonts/Gilroy-Bold.ttf'),
               ),
-              Icon(
+             const Icon(
                 Icons.favorite_border,
                 size: 24,
               ),
             ],
           ),
           Text(
-            '1kg, Price',
-            style: TextStyle(
+            widget.size,
+            style:const TextStyle(
                 fontFamily: 'Gilroy',
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
@@ -87,12 +79,12 @@ class _ProductDetailsViewBodyState extends State<ProductDetailsViewBody> {
           SizedBox(
             height: MediaQuery.of(context).size.height * .02,
           ),
-          CounterPrice(),
+           CounterPrice(price: widget.price,),
           SizedBox(
             height: MediaQuery.of(context).size.height * .05,
           ),
-          Divider(),
-          ListExpansion(),
+         const Divider(),
+          const ListExpansion(),
           Center(
             child: BasicContainer(
                 wid: MediaQuery.of(context).size.width * .84,

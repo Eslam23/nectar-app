@@ -1,16 +1,38 @@
+
 import 'package:flutter/material.dart';
 import 'package:untitled/utilies/styles.dart';
 
 import '../../../../utilies/color_data.dart';
-class ListViewCart extends StatelessWidget {
+class ListViewCart extends StatefulWidget {
   const ListViewCart({Key? key}) : super(key: key);
 
+  @override
+  State<ListViewCart> createState() => _ListViewCartState();
+}
+
+class _ListViewCartState extends State<ListViewCart> {
+  increase(int counter){
+    setState(() {
+      counter++;
+    });
+  }
+  decrease(int counter){
+    if(counter>1){
+      setState(() {
+        counter--;
+      });
+    }
+    return counter;
+  }
   @override
   Widget build(BuildContext context) {
 
     return  Expanded(
     child: ListView.builder(
+
       itemBuilder: (context, index) {
+        double total = ListsData.listCart[index]['price'] * (ListsData.listCart[index]['count']);
+        String totalShow = total.toStringAsFixed(2);
         return Column(
           children: [
             ListTile(
@@ -33,57 +55,75 @@ class ListViewCart extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       SizedBox(
-                        width: MediaQuery.of(context).size.width *.28,
+                        width: MediaQuery.of(context).size.width *.29,
                         height: MediaQuery.of(context).size.height*.05,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Container(
-                              width: MediaQuery.of(context).size.width * .1,
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: Colors.grey.withOpacity(.4),
+                            GestureDetector(
+                              onTap: (){
+                                setState(() {
+                                  if(ListsData.listCart[index]['count'] > 1){
+                                    ListsData.listCart[index]['count']--;
+                                  }
+
+                                });
+                                },
+                              child: Container(
+                                width: MediaQuery.of(context).size.width * .1,
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: Colors.grey.withOpacity(.4),
+                                  ),
+                                  borderRadius: BorderRadius.circular(15),
                                 ),
-                                borderRadius: BorderRadius.circular(15),
-                              ),
-                              child:const Center(
-                                child: Icon(
-                                  Icons.remove,
-                                  size: 24,
-                                  color: Colors.grey,
+                                child:const Center(
+                                  child: Icon(
+                                    Icons.remove,
+                                    size: 24,
+                                    color: Colors.grey,
+                                  ),
                                 ),
                               ),
                             ),
                             SizedBox(width: MediaQuery.of(context).size.width *.02,),
-                            const Center(
+                             Center(
                                 child: Text(
-                                  '${1}',
-                                  style: TextStyle(
+                                  '${ListsData.listCart[index]['count']}',
+                                  style: const TextStyle(
                                       fontWeight: FontWeight.w600,
                                       fontFamily: 'Gilroy',
                                       fontSize: 15),
                                 )),
                             SizedBox(width: MediaQuery.of(context).size.width *.02,),
-                            Container(
-                              width: MediaQuery.of(context).size.width * .1,
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: Colors.grey.withOpacity(.4),
+                            GestureDetector(
+                              onTap: (){
+                                setState(() {
+                                  ListsData.listCart[index]['count']++;
+                                });
+                                //increase(ListsData.listCart[index]['count']);
+                                },
+                              child: Container(
+                                width: MediaQuery.of(context).size.width * .1,
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: Colors.grey.withOpacity(.4),
+                                  ),
+                                  borderRadius: BorderRadius.circular(15),
                                 ),
-                                borderRadius: BorderRadius.circular(15),
-                              ),
-                              child: Center(
-                                child: Icon(
-                                  Icons.add,
-                                  size: 24,
-                                  color: ColorsData.basicColor,
+                                child: Center(
+                                  child: Icon(
+                                    Icons.add,
+                                    size: 24,
+                                    color: ColorsData.basicColor,
+                                  ),
                                 ),
                               ),
                             ),
                           ],
                         ),
                       ),
-                      Text(ListsData.listCart[index]['price'],style: const TextStyle(fontSize: 20,fontFamily: 'fonts/Gilroy-Bold.ttf',fontWeight: FontWeight.w600),)
+                      Text(totalShow,style:  const TextStyle(fontSize: 20,fontFamily: 'fonts/Gilroy-Bold.ttf',fontWeight: FontWeight.w600),)
 
                     ],
                   ),

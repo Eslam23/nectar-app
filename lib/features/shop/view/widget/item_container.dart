@@ -4,7 +4,7 @@ import '../../../../utilies/color_data.dart';
 class ItemContainer extends StatelessWidget {
   final String img;
   final String name;
-  final String price;
+  final num price;
   final String size;
   const ItemContainer({Key? key, required this.img, required this.price, required this.size, required this.name, }) : super(key: key);
 
@@ -37,7 +37,7 @@ class ItemContainer extends StatelessWidget {
           ),
            Text(
             name,
-            style: TextStyle(
+            style:const TextStyle(
                 fontSize: 14,
                 fontFamily: 'fonts/Gilroy-Bold.ttf',
                 fontWeight: FontWeight.w500),
@@ -47,7 +47,7 @@ class ItemContainer extends StatelessWidget {
           ),
            Text(
             size,
-            style: TextStyle(
+            style:const TextStyle(
                 color: Colors.grey,
                 fontSize: 12,
                 fontFamily: 'fonts/Gilroy-Medium.ttf'),
@@ -59,7 +59,7 @@ class ItemContainer extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
                Text(
-                price,
+               '${price}',
                 style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w500,

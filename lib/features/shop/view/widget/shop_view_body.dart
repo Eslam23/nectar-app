@@ -9,9 +9,7 @@ import 'groceries_container.dart';
 import 'item_container.dart';
 
 class ShopViewBody extends StatefulWidget {
-  const ShopViewBody({
-    Key? key,
-  }) : super(key: key);
+  const ShopViewBody({Key? key,}) : super(key: key);
 
   @override
   State<ShopViewBody> createState() => _ShopViewBodyState();
@@ -62,7 +60,8 @@ class _ShopViewBodyState extends State<ShopViewBody> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (_) => ProductDetailsView()));
+                              builder: (_) => ProductDetailsView(name: ListsData.listExclusive[index]['name'],
+                                price:  ListsData.listExclusive[index]['price'],size: ListsData.listExclusive[index]['size'],)));
                     },
                     child: ItemContainer(
                       img:ListsData.listExclusive[index]['image'],
@@ -93,7 +92,7 @@ class _ShopViewBodyState extends State<ShopViewBody> {
                 itemBuilder: (context, index) {
                   return ItemContainer(
                     img: ListsData.listBest[index]['image'],
-                    price: ListsData.listBest[index]['price'],
+                    price: ListsData.listBest[index]['price'] ,
                     size: ListsData.listBest[index]['size'],
                     name: ListsData.listBest[index]['name'],
                   );

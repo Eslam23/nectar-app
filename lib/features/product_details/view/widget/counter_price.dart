@@ -1,9 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/utilies/color_data.dart';
 
-class CounterPrice extends StatelessWidget {
-  const CounterPrice({Key? key}) : super(key: key);
+class CounterPrice extends StatefulWidget {
+  final num price;
+  const CounterPrice({Key? key, required this.price}) : super(key: key);
 
+  @override
+  State<CounterPrice> createState() => _CounterPriceState();
+}
+
+class _CounterPriceState extends State<CounterPrice> {
+  int count=1;
+ increase(){
+   setState(() {
+     count++;
+   });
+ }
+ decrease(){
+   if(count>1){
+     setState(() {
+       count--;
+     });
+   }
+   return count;
+ }
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -15,10 +35,13 @@ class CounterPrice extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Icon(
-                Icons.remove,
-                size: 24,
-                color: Colors.grey,
+              GestureDetector(
+                onTap:(){decrease();},
+                child:const  Icon(
+                  Icons.remove,
+                  size: 24,
+                  color: Colors.grey,
+                ),
               ),
               SizedBox(width: MediaQuery.of(context).size.width *.02,),
               Container(
@@ -31,24 +54,26 @@ class CounterPrice extends StatelessWidget {
                 ),
                 child: Center(
                     child: Text(
-                  '${1}',
-                  style: TextStyle(
+                  '$count',
+                  style:const TextStyle(
                       fontWeight: FontWeight.w600,
                       fontFamily: 'Gilroy',
                       fontSize: 15),
                 )),
               ),
               SizedBox(width: MediaQuery.of(context).size.width *.02,),
-
-              Icon(
-                Icons.add,
-                size: 24,
-                color: ColorsData.basicColor,
+              GestureDetector(
+                onTap: (){increase();},
+                child: Icon(
+                  Icons.add,
+                  size: 24,
+                  color: ColorsData.basicColor,
+                ),
               ),
             ],
           ),
         ),
-        Text('\$4.99',style: TextStyle(fontSize: 22,fontFamily: 'fonts/Gilroy-Bold.ttf',fontWeight: FontWeight.w600),)
+        Text((widget.price*count).toStringAsFixed(2),style:const TextStyle(fontSize: 22,fontFamily: 'fonts/Gilroy-Bold.ttf',fontWeight: FontWeight.w600),)
       ],
     );
   }

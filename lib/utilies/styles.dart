@@ -20,19 +20,22 @@ static const List<Map<String, dynamic>> listExclusive = [
     'image': 'asset/home/92f1ea7dcce3b5d06cd1b1418f9b9413 3.png',
     'name': 'Organic Banana',
     'size': '1kg, Priceg',
-    'price': '\$4.99'
+    'price': 2.99,
+    'count':1
   },
   {
     'image': 'asset/home/pngfuel 1.png',
     'name': 'Red Apple',
     'size': '1kg, Priceg',
-    'price': '\$4.99'
+    'price': 4.99,
+    'count':1
   },
   {
     'image': 'asset/home/92f1ea7dcce3b5d06cd1b1418f9b9413 3.png',
     'name': 'Organic Banana',
     'size': '1kg, Priceg',
-    'price': '\$4.99'
+    'price':3.99,
+    'count':1
   },
 ];
 static const List<Map<String, dynamic>> listBest = [
@@ -40,19 +43,19 @@ static const List<Map<String, dynamic>> listBest = [
     'image': 'asset/cart/Group 6858.png',
     'name': 'Bell Pepper Red',
     'size': '1kg, Priceg',
-    'price': '\$4.99'
+    'price': 4.99
   },
   {
     'image': 'asset/cart/pngfuel 3.png',
     'name': 'Ginger',
     'size': '250gm, Price',
-    'price': '\$2.99'
+    'price': 2.99
   },
   {
     'image': 'asset/cart/Group 6858.png',
     'name': 'Bell Pepper Red',
     'size': '1kg, Priceg',
-    'price': '\$4.99'
+    'price': 4.99
   },
 ];
 static const   List<Map<String, dynamic>> listCategoryGroceries = [
@@ -65,19 +68,19 @@ static const   List<Map<String, dynamic>> listGroceries = [
     'image': 'asset/home/pngfuel 5.png',
     'name': 'Broiler Chicken',
     'size': '1kg, Priceg',
-    'price': '\$4.99'
+    'price': 4.99
   },
   {
     'image': 'asset/home/pngfuel 4n.png',
     'name': 'Beef Bone',
     'size': '1kg, Priceg',
-    'price': '\$4.99'
+    'price': 4.99
   },
   {
     'image': 'asset/home/pngfuel 5.png',
     'name': 'Broiler Chicken',
     'size': '1kg, Priceg',
-    'price': '\$4.99'
+    'price': 4.99
   },
 ];
 static      List<Map<String, dynamic>> itemContentExplore= [
@@ -94,17 +97,17 @@ static      List<Map<String, dynamic>> itemContentExplore= [
 ];
 static const     List<Map<String,dynamic>> listItemDetailsExplore=[
   {'image':'asset/favourite/pngfuel 12.png','name':'Sprite Can','size':'325ml, Price','price':'\$1.50'},
-  {'image':'asset/beverage/pngfuel 11.png','name':'Diet Coke','size':'355ml, Price','price':'\$1.99'},
-  {'image':'asset/favourite/tree-top-juice-apple-grape-64oz 1.png','name':'Apple & Grape Juice','size':'2L, Price','price':'\$15.50'},
+  {'image':'asset/beverage/pngfuel 11.png','name':'Diet Coke','size':'355ml, Price','price':'\$1.99',"count":1},
+  {'image':'asset/favourite/tree-top-juice-apple-grape-64oz 1.png','name':'Apple & Grape Juice','size':'2L, Price','price':'\$15.50',},
   {'image':'asset/favourite/pngfuel 13.png','name':'Coca Cola Can','size':'325ml, Price','price':'\$4.99'},
-  {'image':'asset/favourite/pngfuel 14.png','name':'Pepsi Can ','size':'330ml, Price','price':'\$4.99'},
-  {'image':'asset/favourite/tree-top-juice-apple-grape-64oz 1 (1).png','name':'Pepsi Can ','size':'330ml, Price','price':'\$4.99'},
+  {'image':'asset/favourite/pngfuel 14.png','name':'Pepsi Can ','size':'330ml, Price','price':'\$4.99',},
+  {'image':'asset/favourite/tree-top-juice-apple-grape-64oz 1 (1).png','name':'Pepsi Can ','size':'330ml, Price','price':"\$4.99",},
 ];
-static const     List<Map<String,dynamic>> listCart= [
-  {'image':'asset/cart/Group 6858.png','name':'Bell Pepper Red','size':'1kg, Price','price':'\$4.99'},
-  {'image':'asset/cart/pngfuel 18.png','name':'Egg Chicken Red','size':'4pcs, Price','price':'\$1.99'},
-  {'image':'asset/home/92f1ea7dcce3b5d06cd1b1418f9b9413 3.png','name':'Organic Bananas','size':'12kg, Price','price':'\$3.00'},
-  {'image':'asset/cart/pngfuel 3.png','name':'Ginger','size':'250g, Price','price':'\$2.99'},
+static      List<Map<String,dynamic>> listCart= [
+  {'image':'asset/cart/Group 6858.png','name':'Bell Pepper Red','size':'1kg, Price','price':4.99,"count":1},
+  {'image':'asset/cart/pngfuel 18.png','name':'Egg Chicken Red','size':'4pcs, Price','price':1.99,"count":1},
+  {'image':'asset/home/92f1ea7dcce3b5d06cd1b1418f9b9413 3.png','name':'Organic Bananas','size':'12kg, Price','price':3.00,"count":1},
+  {'image':'asset/cart/pngfuel 3.png','name':'Ginger','size':'250g, Price','price':2.99,"count":1},
 ];
 static const     List<Map<String,dynamic>> listFavourite=[
   {'image':'asset/favourite/pngfuel 12.png','name':'Sprite Can','size':'325ml, Price','price':'\$1.50'},
