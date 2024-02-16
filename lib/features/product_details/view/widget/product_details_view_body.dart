@@ -29,25 +29,14 @@ class _ProductDetailsViewBodyState extends State<ProductDetailsViewBody> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              GestureDetector(
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                  child: const Icon(
-                    Icons.arrow_back_ios,
-                    size: 20,
-                  )),
-              Image.asset(
-                'asset/product_details/Vector (3).png',
-                fit: BoxFit.contain,
-                width: 20,
-                height: 20,
-              ),
-            ],
-          ),
+          GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: const Icon(
+                Icons.arrow_back_ios,
+                size: 20,
+              )),
           const ImageSlider(),
           SizedBox(
             height: MediaQuery.of(context).size.height * .02,
@@ -88,7 +77,7 @@ class _ProductDetailsViewBodyState extends State<ProductDetailsViewBody> {
           Center(
             child: BasicContainer(
                 wid: MediaQuery.of(context).size.width * .84,
-                heig: MediaQuery.of(context).size.height * .09,
+                heig: MediaQuery.of(context).size.height * .07,
                 fun: () {},//Navigator.push(context, MaterialPageRoute(builder: (_)=>const CartView()));},
                 edgeInsets: EdgeInsets.only(
                   top: MediaQuery.of(context).size.height * .03,

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:untitled/features/favourite/view/widget/favourite_view_body.dart';
 class FavouriteView extends StatelessWidget {
@@ -5,8 +7,13 @@ class FavouriteView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body:FavouriteViewBody(),
+    return WillPopScope(
+      onWillPop: () async{
+        return exit(0);
+      },
+      child: const Scaffold(
+        body:FavouriteViewBody(),
+      ),
     );
   }
 }

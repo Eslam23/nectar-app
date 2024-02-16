@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:untitled/features/welcome_screen/view/widget/welcome_view_body.dart';
 class WelcomeView extends StatelessWidget {
@@ -5,8 +7,13 @@ class WelcomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: WelcomeViewBody(),
+    return WillPopScope(
+      onWillPop: ()async{
+        return exit(0);
+      },
+      child: const Scaffold(
+        body: WelcomeViewBody(),
+      ),
     );
   }
 }

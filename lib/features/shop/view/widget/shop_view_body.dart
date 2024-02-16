@@ -16,6 +16,24 @@ class ShopViewBody extends StatefulWidget {
 }
 
 class _ShopViewBodyState extends State<ShopViewBody> {
+  List<Map<String,dynamic>> foundItem=[];
+  List<Map<String,dynamic>> item=ListsData.listExclusive;
+  @override
+  void initState() {
+    foundItem=item;
+    super.initState();
+  }
+  void _runFilter(String enteredKeyword){
+    List<Map<String,dynamic>> results=[];
+    if(enteredKeyword.isEmpty){
+      results=item;
+    }else{
+      results=item.where((user) =>user['name'].toString().toLowerCase().contains(enteredKeyword.toLowerCase()) ).toList();
+    }
+    setState(() {
+      foundItem=results;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +57,7 @@ class _ShopViewBodyState extends State<ShopViewBody> {
             SizedBox(
               height: MediaQuery.of(context).size.height * .02,
             ),
-            const TextFieldSearch(),
+            TextFieldSearch(fun: (String value) { _runFilter(value); },),
             SizedBox(
               height: MediaQuery.of(context).size.height * .025,
             ),
@@ -52,7 +70,7 @@ class _ShopViewBodyState extends State<ShopViewBody> {
             ),
             SizedBox(
               width: double.infinity,
-              height: MediaQuery.of(context).size.height * .31,
+              height: MediaQuery.of(context).size.height * .28,
               child: ListView.builder(
                 itemBuilder: (context, index) {
                   return GestureDetector(
@@ -60,19 +78,19 @@ class _ShopViewBodyState extends State<ShopViewBody> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (_) => ProductDetailsView(name: ListsData.listExclusive[index]['name'],
-                                price:  ListsData.listExclusive[index]['price'],size: ListsData.listExclusive[index]['size'],)));
+                              builder: (_) => ProductDetailsView(name: foundItem[index]['name'],
+                                price:  foundItem[index]['price'],size: foundItem[index]['size'],)));
                     },
                     child: ItemContainer(
-                      img:ListsData.listExclusive[index]['image'],
-                      price: ListsData.listExclusive[index]['price'],
-                      size: ListsData.listExclusive[index]['size'],
-                      name: ListsData.listExclusive[index]['name'],
+                      img:foundItem[index]['image'],
+                      price: foundItem[index]['price'],
+                      size: foundItem[index]['size'],
+                      name: foundItem[index]['name'],
                     ),
                   );
                 },
                 scrollDirection: Axis.horizontal,
-                itemCount: ListsData.listExclusive.length,
+                itemCount: foundItem.length,
               ),
             ),
             SizedBox(
@@ -87,14 +105,23 @@ class _ShopViewBodyState extends State<ShopViewBody> {
             ),
             SizedBox(
               width: double.infinity,
-              height: MediaQuery.of(context).size.height * .31,
+              height: MediaQuery.of(context).size.height * .28,
               child: ListView.builder(
                 itemBuilder: (context, index) {
-                  return ItemContainer(
-                    img: ListsData.listBest[index]['image'],
-                    price: ListsData.listBest[index]['price'] ,
-                    size: ListsData.listBest[index]['size'],
-                    name: ListsData.listBest[index]['name'],
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (_) => ProductDetailsView(name: ListsData.listBest[index]['name'],
+                                price:  ListsData.listBest[index]['price'],size: ListsData.listBest[index]['size'],)));
+                    },
+                    child: ItemContainer(
+                      img: ListsData.listBest[index]['image'],
+                      price: ListsData.listBest[index]['price'] ,
+                      size: ListsData.listBest[index]['size'],
+                      name: ListsData.listBest[index]['name'],
+                    ),
                   );
                 },
                 scrollDirection: Axis.horizontal,
@@ -127,14 +154,23 @@ class _ShopViewBodyState extends State<ShopViewBody> {
             ),
             SizedBox(
               width: double.infinity,
-              height: MediaQuery.of(context).size.height * .31,
+              height: MediaQuery.of(context).size.height * .28,
               child: ListView.builder(
                 itemBuilder: (context, index) {
-                  return ItemContainer(
-                    img: ListsData.listGroceries[index]['image'],
-                    price: ListsData.listGroceries[index]['price'],
-                    size: ListsData.listGroceries[index]['size'],
-                    name: ListsData.listGroceries[index]['name'],
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (_) => ProductDetailsView(name: ListsData.listGroceries[index]['name'],
+                                price:  ListsData.listGroceries[index]['price'],size: ListsData.listGroceries[index]['size'],)));
+                    },
+                    child: ItemContainer(
+                      img: ListsData.listGroceries[index]['image'],
+                      price: ListsData.listGroceries[index]['price'],
+                      size: ListsData.listGroceries[index]['size'],
+                      name: ListsData.listGroceries[index]['name'],
+                    ),
                   );
                 },
                 scrollDirection: Axis.horizontal,

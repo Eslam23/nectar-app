@@ -10,7 +10,7 @@ class GoogleContainer extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(bottom: MediaQuery.of(context).size.height *.03),
       width: MediaQuery.of(context).size.width *.8,
-      height: MediaQuery.of(context).size.height *.09,
+      height: MediaQuery.of(context).size.height *.08,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(19),
         color: col,
@@ -19,7 +19,7 @@ class GoogleContainer extends StatelessWidget {
         child: Row(
           children: [
             SizedBox(width: MediaQuery.of(context).size.width *.035,),
-            Image.asset(imag,width: 60,height: 35,fit: BoxFit.contain,),
+            Image.asset(imag,width: 55,height: 30,fit: BoxFit.contain,),
             SizedBox(width: MediaQuery.of(context).size.width *.04,),
             Text(txtButton,style: const TextStyle(color: Colors.white,fontSize: 16,fontFamily: 'Gilroy',fontWeight: FontWeight.w500),),
           ],

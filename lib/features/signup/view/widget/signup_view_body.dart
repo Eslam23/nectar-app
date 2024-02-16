@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/basic_container.dart';
 import 'package:untitled/features/login/login_view.dart';
+import 'package:untitled/tab_screen.dart';
 
 import '../../../../carrot_image.dart';
 import '../../../../utilies/color_data.dart';
-import '../../../shop/shop_view.dart';
 class SignupViewBody extends StatelessWidget {
   const SignupViewBody({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController _controllUser=TextEditingController();
-    TextEditingController _controllEmail=TextEditingController();
-    TextEditingController _controllPassword=TextEditingController();
+    TextEditingController controlUser=TextEditingController();
+    TextEditingController controlEmail=TextEditingController();
+    TextEditingController controlPassword=TextEditingController();
     return  Padding(
       padding: EdgeInsets.only(
           left: MediaQuery.of(context).size.width * .05,
@@ -26,7 +26,7 @@ class SignupViewBody extends StatelessWidget {
             SizedBox(
               height: MediaQuery.of(context).size.height * .06,
             ),
-            Text(
+           const Text(
               'Sign Up',
               style: TextStyle(
                   fontSize: 24,
@@ -36,7 +36,7 @@ class SignupViewBody extends StatelessWidget {
             SizedBox(
               height: MediaQuery.of(context).size.height * .01,
             ),
-            Text(
+           const Text(
               'Enter your credentials to continue',
               style: TextStyle(
                   fontFamily: 'fonts/Gilroy-Medium.ttf',
@@ -46,58 +46,62 @@ class SignupViewBody extends StatelessWidget {
             SizedBox(
               height: MediaQuery.of(context).size.height * .06,
             ),
-            Text(
+           const Text(
               'Username',
               style: TextStyle(
                   fontSize: 16, fontFamily: 'Gilroy', color: Colors.grey),
             ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * .04,
-              child: TextField(
-                keyboardType: TextInputType.text,
-                controller: _controllUser,
-                decoration: InputDecoration(
-                  enabled: true,
-                  border: UnderlineInputBorder(),
-                ),
+            TextField(
+              maxLines: 1,
+              keyboardType: TextInputType.text,
+              controller: controlUser,
+              decoration:const InputDecoration(
+                isDense: true,
+                contentPadding: EdgeInsets.zero,
+                enabled: true,
+                border: UnderlineInputBorder(),
               ),
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * .03,
             ),
-            Text(
+          const  Text(
               'Email',
               style: TextStyle(
                   fontSize: 16, fontFamily: 'Gilroy', color: Colors.grey),
             ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * .04,
-              child: TextField(
-                keyboardType: TextInputType.emailAddress,
-                controller: _controllEmail,
-                decoration: InputDecoration(
-                  enabled: true,
-                  border: UnderlineInputBorder(),
-                ),
+            TextField(
+              maxLines: 1,
+              keyboardType: TextInputType.emailAddress,
+              controller: controlEmail,
+              decoration:const InputDecoration(
+                isDense: true,
+                contentPadding: EdgeInsets.zero,
+                enabled: true,
+                border: UnderlineInputBorder(),
               ),
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * .03,
             ),
-            Text(
+           const Text(
               'Password',
               style: TextStyle(
                   fontSize: 16, fontFamily: 'Gilroy', color: Colors.grey),
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height * .04,
+              height: MediaQuery.of(context).size.height*.035,
               child: TextField(
+                maxLines: 1,
                 keyboardType: TextInputType.visiblePassword,
-                controller: _controllPassword,
-                decoration: InputDecoration(
+                controller: controlPassword,
+                decoration:const InputDecoration(
+                  isDense: true,
+                  contentPadding: EdgeInsets.zero,
                   suffixIcon: Icon(
                     Icons.visibility_off_sharp,
                     color: Colors.grey,
+                    size: 20,
                   ),
                   enabled: true,
                   border: UnderlineInputBorder(),
@@ -107,12 +111,12 @@ class SignupViewBody extends StatelessWidget {
             SizedBox(
               height: MediaQuery.of(context).size.height * .01,
             ),
-            Text('By continuing you agree to our Terms of Service\nand Privacy Policy.'),
+           const Text('By continuing you agree to our Terms of Service\nand Privacy Policy.'),
             Center(
               child: BasicContainer(
                   wid: MediaQuery.of(context).size.width * .84,
                   heig: MediaQuery.of(context).size.height * .09,
-                  fun: () {Navigator.push(context, MaterialPageRoute(builder: (_)=>const ShopView()));},
+                  fun: () {Navigator.push(context, MaterialPageRoute(builder: (_)=>const TabScreen()));},
                   edgeInsets: EdgeInsets.only(
                     top: MediaQuery.of(context).size.height * .04,
                   ),
@@ -124,7 +128,7 @@ class SignupViewBody extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('Already have an account? '),
+               const Text('Already have an account? '),
                 GestureDetector(
                   onTap: (){
                     Navigator.push(context, MaterialPageRoute(builder: (_)=>const LoginView()));

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:bottom_bar_page_transition/bottom_bar_page_transition.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled/utilies/color_data.dart';
@@ -24,14 +26,14 @@ class _TabScreenState extends State<TabScreen> {
     'Favourite',
     'Account',
   ];
-  List<dynamic> _pages = [
+  List<dynamic>  pages =const [
     ShopView(),
     ExploreView(),
     CartView(),
     FavouriteView(),
     AccountView(),
   ];
-List<String> _imag=[
+List<String> imag=[
   'asset/home/store 1.png',
   'asset/home/Group 3.png',
   'asset/home/Vector (2).png',
@@ -40,25 +42,30 @@ List<String> _imag=[
 ];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: _pages[_currentPage],
-      bottomNavigationBar: BottomBarPageTransition(
-        builder: (BuildContext context, int index) {
-          return BottomNavigationBar(
-              currentIndex: _currentPage,
-              selectedItemColor: ColorsData.basicColor,
-              selectedIconTheme: IconThemeData(color: ColorsData.basicColor),
-              unselectedItemColor: Colors.black,
-              type: BottomNavigationBarType.fixed,
-              onTap: (index) {
-                _currentPage=index;
-                setState(() {});
-              },
-              items: List.generate(totalPages, (index) => BottomNavigationBarItem(
-                  icon:Image.asset(_imag[index], color: _currentPage==index?ColorsData.basicColor:Colors.black,) ,label: pageName[index])),);
-        },
-        currentIndex: _currentPage,
-        totalLength: totalPages,
+    return  WillPopScope(
+      onWillPop: () async{
+        return exit(0);
+      },
+      child: Scaffold(
+        body: pages[_currentPage],
+        bottomNavigationBar: BottomBarPageTransition(
+          builder: (BuildContext context, int index) {
+            return BottomNavigationBar(
+                currentIndex: _currentPage,
+                selectedItemColor: ColorsData.basicColor,
+                selectedIconTheme: IconThemeData(color: ColorsData.basicColor),
+                unselectedItemColor: Colors.black,
+                type: BottomNavigationBarType.fixed,
+                onTap: (index) {
+                  _currentPage=index;
+                  setState(() {});
+                },
+                items: List.generate(totalPages, (index) => BottomNavigationBarItem(
+                    icon:Image.asset(imag[index], color: _currentPage==index?ColorsData.basicColor:Colors.black,) ,label: pageName[index])),);
+          },
+          currentIndex: _currentPage,
+          totalLength: totalPages,
+        ),
       ),
     );
   }

@@ -8,8 +8,8 @@ class LocationViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController _controllerZone=TextEditingController();
-    final TextEditingController _controllerArea=TextEditingController();
+    final TextEditingController controllerZone=TextEditingController();
+    final TextEditingController controllerArea=TextEditingController();
     final List<String> items=["Afghanistan", "Albania", "Algeria", "American Samoa",
       "Andorra", "Angola", "Anguilla", "Antarctica", "Antigua and Barbuda",
       "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan"];
@@ -45,7 +45,7 @@ class LocationViewBody extends StatelessWidget {
             SizedBox(
               height: MediaQuery.of(context).size.height * .03,
             ),
-            Center(
+          const  Center(
               child: Text(
                 'Select Your Location',
                 style: TextStyle(
@@ -59,7 +59,7 @@ class LocationViewBody extends StatelessWidget {
             SizedBox(
               height: MediaQuery.of(context).size.height * .01,
             ),
-            Center(
+          const  Center(
               child: Text(
                 'Swithch on your location to stay in tune with\nwhat’s happening in your area',
                 style: TextStyle(
@@ -71,19 +71,19 @@ class LocationViewBody extends StatelessWidget {
               ),
             ),
             SizedBox(height: MediaQuery.of(context).size.height *.08,),
-            Text('Your Zone',style: TextStyle(fontFamily: 'Gilroy',fontWeight: FontWeight.w500,fontSize: 16,color: Colors.grey),),
+           const Text('Your Zone',style: TextStyle(fontFamily: 'Gilroy',fontWeight: FontWeight.w500,fontSize: 16,color: Colors.grey),),
             FlutterDropdownSearch(
               hintText: 'Type of your zone',
-              textController: _controllerZone,
+              textController: controllerZone,
               items: items,
               dropdownHeight: 300,
             ),
             SizedBox(height: MediaQuery.of(context).size.height *.04,),
-            Text('Your Area',style: TextStyle(fontFamily: 'Gilroy',fontWeight: FontWeight.w500,fontSize: 16,color: Colors.grey),),
+          const  Text('Your Area',style: TextStyle(fontFamily: 'Gilroy',fontWeight: FontWeight.w500,fontSize: 16,color: Colors.grey),),
 
             FlutterDropdownSearch(
               hintText: 'Type of your area',
-              textController: _controllerArea,
+              textController: controllerArea,
               items: items,
               dropdownHeight: 300,
             ),

@@ -1,19 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/basic_container.dart';
-import 'package:untitled/features/shop/shop_view.dart';
 import 'package:untitled/utilies/color_data.dart';
 
 import '../../../../carrot_image.dart';
 import '../../../../tab_screen.dart';
 import '../../../signup/signup_view.dart';
 
-class LoginViewBody extends StatelessWidget {
+class LoginViewBody extends StatefulWidget {
   const LoginViewBody({Key? key}) : super(key: key);
 
   @override
+  State<LoginViewBody> createState() => _LoginViewBodyState();
+}
+
+class _LoginViewBodyState extends State<LoginViewBody> {
+  TextEditingController controllEmail = TextEditingController();
+  TextEditingController controllPassword = TextEditingController();
+  bool visible=true;
+  @override
   Widget build(BuildContext context) {
-    TextEditingController _controllEmail = TextEditingController();
-    TextEditingController _controllPassword = TextEditingController();
     return Padding(
       padding: EdgeInsets.only(
           left: MediaQuery.of(context).size.width * .05,
@@ -27,7 +32,7 @@ class LoginViewBody extends StatelessWidget {
             SizedBox(
               height: MediaQuery.of(context).size.height * .06,
             ),
-            Text(
+          const  Text(
               'Loging',
               style: TextStyle(
                   fontSize: 24,
@@ -37,7 +42,7 @@ class LoginViewBody extends StatelessWidget {
             SizedBox(
               height: MediaQuery.of(context).size.height * .01,
             ),
-            Text(
+           const Text(
               'Enter your emails and password',
               style: TextStyle(
                   fontFamily: 'fonts/Gilroy-Medium.ttf',
@@ -47,51 +52,58 @@ class LoginViewBody extends StatelessWidget {
             SizedBox(
               height: MediaQuery.of(context).size.height * .08,
             ),
-            Text(
+           const Text(
               'Email',
               style: TextStyle(
                   fontSize: 16, fontFamily: 'Gilroy', color: Colors.grey),
             ),
-
-            SizedBox(
-              height: MediaQuery.of(context).size.height * .04,
-              child: TextField(
-                keyboardType: TextInputType.emailAddress,
-                controller: _controllEmail,
-                decoration: InputDecoration(
-                  enabled: true,
-                  border: UnderlineInputBorder(),
-                ),
+            TextFormField(
+              maxLines: 1,
+              keyboardType: TextInputType.emailAddress,
+              controller: controllEmail,
+              decoration:const InputDecoration(
+                isDense: true,
+                contentPadding: EdgeInsets.zero,
+                border: UnderlineInputBorder(),
               ),
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * .04,
             ),
-            Text(
-              'Password',
-              style: TextStyle(
-                  fontSize: 16, fontFamily: 'Gilroy', color: Colors.grey),
-            ),
-
+            const Text('Password',style:  TextStyle(
+                fontSize: 16, fontFamily: 'Gilroy', color: Colors.grey),),
             SizedBox(
-              height: MediaQuery.of(context).size.height * .04,
-              child: TextField(
+              height: MediaQuery.of(context).size.height*.035,
+              child: TextFormField(
+                textAlignVertical: TextAlignVertical.center,
                 keyboardType: TextInputType.visiblePassword,
-                controller: _controllPassword,
+                maxLines: 1,
+                controller: controllPassword,
+                obscureText: visible,
                 decoration: InputDecoration(
-                  suffixIcon: Icon(
-                    Icons.visibility_off_sharp,
-                    color: Colors.grey,
+                  contentPadding: EdgeInsets.zero,
+                  isDense: true,
+                  suffixIcon: GestureDetector(
+                    onTap: (){
+                      setState(() {
+                        visible=!visible;
+                      });
+                    },
+                    child: Icon(
+                      visible?Icons.visibility_off_sharp:Icons.visibility,
+                      color: Colors.grey,
+                      size: 20,
+                    ),
                   ),
-                  enabled: true,
-                  border: UnderlineInputBorder(),
+
+                  border:const UnderlineInputBorder(),
                 ),
               ),
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * .01,
             ),
-            Align(
+          const  Align(
                 alignment: Alignment.centerRight,
                 child: Text(
                   'Forgot Password?',
@@ -114,7 +126,7 @@ class LoginViewBody extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('Don’t have an account? '),
+               const Text('Don’t have an account? '),
                 GestureDetector(
                   onTap: (){
                     Navigator.push(context, MaterialPageRoute(builder: (_)=>const SignupView()));

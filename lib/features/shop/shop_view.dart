@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:untitled/features/shop/view/widget/shop_view_body.dart';
 class ShopView extends StatelessWidget {
@@ -5,8 +7,13 @@ class ShopView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: ShopViewBody(),
+    return WillPopScope(
+      onWillPop: () async{
+        return exit(0);
+      },
+      child: const Scaffold(
+        body: ShopViewBody(),
+      ),
     );
   }
 }

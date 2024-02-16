@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:untitled/features/explore/view/widget/explore_view_body.dart';
 class ExploreView extends StatelessWidget {
@@ -5,8 +7,13 @@ class ExploreView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: ExploreViewBody(),
+    return WillPopScope(
+      onWillPop: () async{
+        return exit(0);
+      },
+      child: const Scaffold(
+        body: ExploreViewBody(),
+      ),
     );
   }
 }

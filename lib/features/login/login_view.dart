@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:untitled/features/login/view/widget/login_view_body.dart';
 class LoginView extends StatelessWidget {
@@ -5,8 +7,13 @@ class LoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: LoginViewBody(),
+    return WillPopScope(
+      onWillPop: () async{
+        return exit(0);
+      },
+      child: const Scaffold(
+        body: LoginViewBody(),
+      ),
     );
   }
 }

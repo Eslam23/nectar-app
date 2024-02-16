@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:untitled/features/signup/view/widget/signup_view_body.dart';
 class SignupView extends StatelessWidget {
@@ -5,8 +7,13 @@ class SignupView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: SignupViewBody(),
+    return WillPopScope(
+      onWillPop: () async{
+        return exit(0);
+      },
+      child: const Scaffold(
+        body: SignupViewBody(),
+      ),
     );
   }
 }

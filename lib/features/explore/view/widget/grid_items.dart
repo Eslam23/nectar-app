@@ -4,7 +4,8 @@ import 'package:untitled/utilies/styles.dart';
 import '../../../product_type/product_type_view.dart';
 
 class GridItems extends StatelessWidget {
-  const GridItems({Key? key}) : super(key: key);
+
+  const GridItems({Key? key,}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

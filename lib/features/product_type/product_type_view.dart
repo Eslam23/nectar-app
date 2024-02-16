@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:untitled/features/product_type/view/widget/product_type_view_body.dart';
 class ProductTypeView extends StatelessWidget {
@@ -5,8 +7,13 @@ class ProductTypeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: ProductTypeViewBody(),
+    return WillPopScope(
+      onWillPop: ()async{
+        return exit(0);
+      },
+      child: const Scaffold(
+        body: ProductTypeViewBody(),
+      ),
     );
   }
 }

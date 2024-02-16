@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:untitled/features/cart/view/widget/cart_view_body.dart';
 class CartView extends StatelessWidget {
@@ -5,8 +7,13 @@ class CartView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: CartViewBody(),
+    return WillPopScope(
+      onWillPop: () async{
+        return exit(0);
+      },
+      child: const Scaffold(
+        body: CartViewBody(),
+      ),
     );
   }
 }

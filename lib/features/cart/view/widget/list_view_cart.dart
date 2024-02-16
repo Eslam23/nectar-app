@@ -45,7 +45,8 @@ class _ListViewCartState extends State<ListViewCart> {
                     children: [
                       Text(ListsData.listCart[index]['name'],style:const TextStyle(fontFamily: 'fonts/Gilroy-Bold.ttf',fontSize: 16,fontWeight: FontWeight.w600),),
 
-                    const  Icon(Icons.close),
+                      GestureDetector(onTap: (){setState(() {
+                      });},child: Icon(Icons.close)),
                     ],
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height *.005,),
@@ -77,11 +78,11 @@ class _ListViewCartState extends State<ListViewCart> {
                                   ),
                                   borderRadius: BorderRadius.circular(15),
                                 ),
-                                child:const Center(
+                                child: Center(
                                   child: Icon(
                                     Icons.remove,
                                     size: 24,
-                                    color: Colors.grey,
+                                    color:ListsData.listCart[index]['count'] > 1?ColorsData.basicColor: Colors.grey,
                                   ),
                                 ),
                               ),

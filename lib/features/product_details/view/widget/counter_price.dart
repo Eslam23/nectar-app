@@ -19,6 +19,7 @@ class _CounterPriceState extends State<CounterPrice> {
  decrease(){
    if(count>1){
      setState(() {
+
        count--;
      });
    }
@@ -36,11 +37,13 @@ class _CounterPriceState extends State<CounterPrice> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               GestureDetector(
-                onTap:(){decrease();},
-                child:const  Icon(
+                onTap:(){
+                  decrease();
+                  },
+                child:  Icon(
                   Icons.remove,
                   size: 24,
-                  color: Colors.grey,
+                  color:count>1? ColorsData.basicColor:Colors.grey,
                 ),
               ),
               SizedBox(width: MediaQuery.of(context).size.width *.02,),
