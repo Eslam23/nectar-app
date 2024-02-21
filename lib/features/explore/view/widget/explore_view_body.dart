@@ -61,7 +61,7 @@ Widget build(BuildContext context) {
             .of(context)
             .size
             .height * .03,),
-        TextFieldSearch(fun: (String value) =>filtered(value),),
+        TextFieldSearch(fun: (String value) =>filtered(value), nav: () {  },),
         //GridItems(),
     Expanded(
       child: GridView.builder(

@@ -116,7 +116,7 @@ class SignupViewBody extends StatelessWidget {
               child: BasicContainer(
                   wid: MediaQuery.of(context).size.width * .84,
                   heig: MediaQuery.of(context).size.height * .09,
-                  fun: () {Navigator.push(context, MaterialPageRoute(builder: (_)=>const TabScreen()));},
+                  fun: () {Navigator.push(context, MaterialPageRoute(builder: (_)=> TabScreen(currentPageByIndex: 0,)));},
                   edgeInsets: EdgeInsets.only(
                     top: MediaQuery.of(context).size.height * .04,
                   ),

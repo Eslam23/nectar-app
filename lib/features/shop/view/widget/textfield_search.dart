@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 class TextFieldSearch extends StatefulWidget {
   final Function(String value) fun;
-  const TextFieldSearch({Key? key, required this.fun,}) : super(key: key);
+final Function()  nav;
+  const TextFieldSearch({Key? key, required this.fun, required this.nav,}) : super(key: key);
 
   @override
   State<TextFieldSearch> createState() => _TextFieldSearchState();
@@ -16,6 +17,7 @@ class _TextFieldSearchState extends State<TextFieldSearch> {
       width: double.infinity,
       height: MediaQuery.of(context).size.height * .06,
       child: TextField(
+        onTap: widget.nav,
         onChanged:widget.fun,
         maxLines: 1,
         decoration: InputDecoration(
