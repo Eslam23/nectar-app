@@ -2,23 +2,18 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:untitled/features/product_details/view/widget/product_details_view_body.dart';
+
+import '../../core/api_actions/models.dart';
 class ProductDetailsView extends StatelessWidget {
+  final Products products;
 
 
-  const ProductDetailsView({Key? key,required this.name,required this.price,required this.size }) : super(key: key);
-  final String name;
-  final String size;
-  final  num price;
+  const ProductDetailsView({Key? key, required this.products }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return  WillPopScope(
-      onWillPop: ()async{
-        return exit(0);
-      },
-      child: Scaffold(
-        body: ProductDetailsViewBody(name: name, price: price, size: size,),
-      ),
+    return  Scaffold(
+      body: ProductDetailsViewBody(products: products,),
     );
   }
 }

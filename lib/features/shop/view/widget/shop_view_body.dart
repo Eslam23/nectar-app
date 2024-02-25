@@ -1,20 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:untitled/core/api_actions/provider_method.dart';
 
 import 'package:untitled/features/product_details/product_details_view.dart';
+import 'package:untitled/features/shop/view/widget/best_seller_list.dart';
+import 'package:untitled/features/shop/view/widget/exclusive_offer_list.dart';
 import 'package:untitled/features/shop/view/widget/row_address.dart';
 import 'package:untitled/features/shop/view/widget/row_header.dart';
 import 'package:untitled/features/shop/view/widget/textfield_search.dart';
 import 'package:untitled/tab_screen.dart';
 import 'package:untitled/utilies/styles.dart';
 import '../../../../carrot_image.dart';
+import '../../../../core/api_actions/cart_provider.dart';
+import '../../../../core/api_actions/models.dart';
 import 'gridview_announace.dart';
 import 'groceries_container.dart';
 import 'item_container.dart';
 import 'listview_sales.dart';
 
 class ShopViewBody extends StatefulWidget {
+  final Products products;
   const ShopViewBody({
-    Key? key,
+    Key? key, required this.products,
   }) : super(key: key);
 
   @override
@@ -22,6 +29,15 @@ class ShopViewBody extends StatefulWidget {
 }
 
 class _ShopViewBodyState extends State<ShopViewBody> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsFlutterBinding.ensureInitialized().addPostFrameCallback((timeStamp) {
+      Provider.of<ProviderProduct>(context,listen: false).fetchAllProducts();
+     Provider.of<ProviderProduct>(context,listen: false).getBestSellerProducts();
+     Provider.of<ProviderProduct>(context,listen: false).getExclusiveOffer();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +82,11 @@ class _ShopViewBodyState extends State<ShopViewBody> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * .025,
               ),
-              SizedBox(
+              Consumer<ProviderProduct>(
+          builder: (context,value,index){
+            final prov=value.getBestSellerProducts();
+            if(prov.isNotEmpty){
+              return SizedBox(
                 width: double.infinity,
                 height: MediaQuery.of(context).size.height * .28,
                 child: ListView.builder(
@@ -77,23 +97,26 @@ class _ShopViewBodyState extends State<ShopViewBody> {
                             context,
                             MaterialPageRoute(
                                 builder: (_) => ProductDetailsView(
-                                      name: ListsData.listExclusive[index]['name'],
-                                      price: ListsData.listExclusive[index]['price'],
-                                      size: ListsData.listExclusive[index]['size'],
-                                    )));
+                                  products: prov[index],
+                                )));
                       },
-                      child: ItemContainer(
-                        img: ListsData.listExclusive[index]['image'],
-                        price: ListsData.listExclusive[index]['price'],
-                        size: ListsData.listExclusive[index]['size'],
-                        name: ListsData.listExclusive[index]['name'],
+                      child: ItemContainer(products: prov[index],
+                        
                       ),
                     );
                   },
                   scrollDirection: Axis.horizontal,
-                  itemCount: ListsData.listExclusive.length,
+                  itemCount: prov.length,
                 ),
-              ),
+              );
+            }else{
+              return const SizedBox(height:20,width:20,child: CircularProgressIndicator(strokeWidth: 3,));
+
+            }
+          },
+
+        ),
+           //  ExclusiveOfferList(products: widget.products,),
               SizedBox(
                 height: MediaQuery.of(context).size.height * .025,
               ),
@@ -104,7 +127,11 @@ class _ShopViewBodyState extends State<ShopViewBody> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * .025,
               ),
-              SizedBox(
+        Consumer<ProviderProduct>(
+          builder: (context,value,index){
+            final prov=value.getExclusiveOffer();
+            if(prov.isNotEmpty){
+              return SizedBox(
                 width: double.infinity,
                 height: MediaQuery.of(context).size.height * .28,
                 child: ListView.builder(
@@ -115,23 +142,25 @@ class _ShopViewBodyState extends State<ShopViewBody> {
                             context,
                             MaterialPageRoute(
                                 builder: (_) => ProductDetailsView(
-                                      name: ListsData.listBest[index]['name'],
-                                      price: ListsData.listBest[index]['price'],
-                                      size: ListsData.listBest[index]['size'],
-                                    )));
+                                 products: prov[index],
+                                )));
                       },
                       child: ItemContainer(
-                        img: ListsData.listBest[index]['image'],
-                        price: ListsData.listBest[index]['price'],
-                        size: ListsData.listBest[index]['size'],
-                        name: ListsData.listBest[index]['name'],
-                      ),
+                        products: prov[index],
+                     ),
                     );
                   },
                   scrollDirection: Axis.horizontal,
-                  itemCount: ListsData.listBest.length,
+                  itemCount: prov.length,
                 ),
-              ),
+              );
+            }else{
+              return const SizedBox(height:20,width:20,child: CircularProgressIndicator(strokeWidth: 3,));
+            }
+          },
+
+        ),
+             // BestSellerList(products:  widget.products,),
               SizedBox(
                 height: MediaQuery.of(context).size.height * .025,
               ),
@@ -159,7 +188,7 @@ class _ShopViewBodyState extends State<ShopViewBody> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * .025,
               ),
-              SizedBox(
+             /* SizedBox(
                 width: double.infinity,
                 height: MediaQuery.of(context).size.height * .28,
                 child: ListView.builder(
@@ -189,7 +218,7 @@ class _ShopViewBodyState extends State<ShopViewBody> {
                   scrollDirection: Axis.horizontal,
                   itemCount: ListsData.listGroceries.length,
                 ),
-              ),
+              ),*/
             ],
           ),
         ),

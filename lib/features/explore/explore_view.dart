@@ -10,13 +10,8 @@ class ExploreView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async{
-        return  exit(0);
-      },
-      child:  Scaffold(
-        body: ExploreViewBody(),
-      ),
+    return Scaffold(
+      body: ExploreViewBody(),
     );
   }
 }

@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/features/cart/view/widget/list_view_cart.dart';
 
-import '../../../../utilies/color_data.dart';
 import 'button_checkout.dart';
 
-class CartViewBody extends StatelessWidget {
-  const CartViewBody({Key? key}) : super(key: key);
+class CartViewBody extends StatefulWidget {
+  const CartViewBody({Key? key,}) : super(key: key);
 
+  @override
+  State<CartViewBody> createState() => _CartViewBodyState();
+}
+
+class _CartViewBodyState extends State<CartViewBody> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -25,8 +29,8 @@ class CartViewBody extends StatelessWidget {
             height: MediaQuery.of(context).size.height * .03,
           ),
           const  Divider(),
-        const ListViewCart(),
-          ButtonCheckOut(),
+         const ListViewCart(),
+        const   ButtonCheckOut(),
         ],
       ),
     );

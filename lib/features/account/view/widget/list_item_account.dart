@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:untitled/utilies/styles.dart';
 
 import '../../../myclub_card/myclub_card_view.dart';
+import '../../../profile/profile_view.dart';
 import '../../../scan_code/scan_code_view.dart';
 class ListItemAccount extends StatelessWidget {
   const ListItemAccount({Key? key}) : super(key: key);
@@ -9,7 +10,7 @@ class ListItemAccount extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Map<String,dynamic>> listTileAccount=[
-      {'title':'Orders','icon':Icon(Icons.local_mall_outlined,size: 20,),},
+      {'title':'Profile','icon':Icon(Icons.local_mall_outlined,size: 20,),'onPress':(){Navigator.of(context).push(MaterialPageRoute(builder: (_)=>ProfileView()));}},
       {'title':'Scan & Go','icon':Icon(Icons.medical_information_outlined,size: 20,),'onPress':(){Navigator.push(context, MaterialPageRoute(builder: (_)=>ScanCodeView()));}},
       {'title':'MyClub Card','icon':Icon(Icons.location_on_outlined,size: 20,),'onPress':(){Navigator.push(context, MaterialPageRoute(builder: (_)=>MyClubCardView()));}},
       {'title':'Payment Methods','icon':Icon(Icons.payment_outlined,size: 20,)},

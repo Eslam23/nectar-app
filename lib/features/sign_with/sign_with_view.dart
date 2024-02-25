@@ -15,13 +15,8 @@ class SignWithView extends StatefulWidget {
 class _SignWithViewState extends State<SignWithView> {
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: ()async{
-        return exit(0);
-      },
-      child: const Scaffold(
-        body: SignWithViewBody(),
-      ),
+    return const Scaffold(
+      body: SignWithViewBody(),
     );
   }
 }

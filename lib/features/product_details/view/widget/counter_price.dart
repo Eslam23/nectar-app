@@ -76,7 +76,7 @@ class _CounterPriceState extends State<CounterPrice> {
             ],
           ),
         ),
-        Text((widget.price*count).toStringAsFixed(2),style:const TextStyle(fontSize: 22,fontFamily: 'fonts/Gilroy-Bold.ttf',fontWeight: FontWeight.w600),)
+        Text('\$${(widget.price*count).toStringAsFixed(2)}',style:const TextStyle(fontSize: 22,fontFamily: 'fonts/Gilroy-Bold.ttf',fontWeight: FontWeight.w600),)
       ],
     );
   }

@@ -7,15 +7,15 @@ import '../../../../core/api_actions/models.dart';
 import '../../../../core/api_actions/provider_method.dart';
 import '../../../product_details/product_details_view.dart';
 import 'item_container.dart';
-class ExclusiveOfferList extends StatelessWidget {
+class BestSellerList extends StatelessWidget {
   final Products products;
-  const ExclusiveOfferList({Key? key, required this.products}) : super(key: key);
+  const BestSellerList({Key? key, required this.products}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return  Consumer<ProviderProduct>(
+    return Consumer<ProviderProduct>(
       builder: (context,value,index){
-        final prov=value.getExclusiveOffer();
+        final prov=value.getBestSellerProducts();
         if(prov.isNotEmpty){
           return SizedBox(
             width: double.infinity,
@@ -28,18 +28,18 @@ class ExclusiveOfferList extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                             builder: (_) => ProductDetailsView(
-                              name:prov[index].title!,*/
-/* ListsData.listExclusive[index]['name'],*//*
-
+                              name: prov[index].title!,
                               price: prov[index].price!,
-                              size: prov[index].amount!, img: prov[index].image!.url!,
+                              size: prov[index].amount!,
+                              img:prov[index].image!.url!,
                             )));
                   },
                   child: ItemContainer(
-                    img: prov[index].image!.url!,
-                    price:prov[index].price!,
-                    size: prov[index].amount!,
-                    name: prov[index].title!, fun: () {Provider.of<CartProvider>(context,listen: false).addProduct(products);  },
+                    fun: (){Provider.of<CartProvider>(context,listen: false).addProduct(products);},
+                    img:  prov[index].image!.url!,
+                    price: prov[index].price!,
+                    size:  prov[index].amount!,
+                    name: prov[index].title!,
                   ),
                 );
               },
@@ -49,6 +49,7 @@ class ExclusiveOfferList extends StatelessWidget {
           );
         }else{
           return const SizedBox(height:20,width:20,child: CircularProgressIndicator(strokeWidth: 3,));
+
         }
       },
 

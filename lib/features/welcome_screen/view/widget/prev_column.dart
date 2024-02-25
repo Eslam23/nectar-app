@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/features/shop/shop_view.dart';
+import 'package:untitled/tab_screen.dart';
 
 import '../../../../basic_container.dart';
 import '../../../sign_with/sign_with_view.dart';
@@ -51,7 +53,7 @@ class PrevColumn extends StatelessWidget {
             heig: MediaQuery.of(context).size.height * .09,
             fun: () {
               Navigator.of(context).push(
-                  MaterialPageRoute(builder: (_) => const SignWithView()));
+                  MaterialPageRoute(builder: (_) => TabScreen(currentPageByIndex: 0,)));
             },
             edgeInsets: EdgeInsets.only(
                 bottom: MediaQuery.of(context).size.height * .02), txtButton: 'Get Started',

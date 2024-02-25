@@ -1,17 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:untitled/core/api_actions/cart_provider.dart';
 
 import '../../../../utilies/color_data.dart';
 import 'bottom_sheet_cart.dart';
 
-class ButtonCheckOut extends StatelessWidget {
+class ButtonCheckOut extends StatefulWidget {
   const ButtonCheckOut({Key? key}) : super(key: key);
 
+  @override
+  State<ButtonCheckOut> createState() => _ButtonCheckOutState();
+}
+
+class _ButtonCheckOutState extends State<ButtonCheckOut> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         showModalBottomSheet(
-            context: context, builder: (ctx) =>const BottomSheetCart());
+            context: context, builder: (ctx) => const BottomSheetCart());
       },
       child: Container(
         margin: EdgeInsets.only(
@@ -36,25 +43,30 @@ class ButtonCheckOut extends StatelessWidget {
                     fontFamily: 'Gilroy',
                     fontWeight: FontWeight.w500),
               ),
-              Container(
-                margin: EdgeInsets.only(
-                    left: MediaQuery.of(context).size.width * .1,
-                    right: MediaQuery.of(context).size.width * .05),
-                width: MediaQuery.of(context).size.width * .1,
-                height: MediaQuery.of(context).size.height * .03,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    color: const Color(0xFF489E67)),
-                child: const Center(
-                  child: Text(
-                    '\$12.96',
-                    style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 12,
-                        fontFamily: 'Gilroy',
-                        color: Colors.white),
-                  ),
-                ),
+              Consumer<CartProvider>(
+                builder: (context, value, child) {
+                  final prov = value.getCartAmount();
+                  return Container(
+                    margin: EdgeInsets.only(
+                        left: MediaQuery.of(context).size.width * .1,
+                        right: MediaQuery.of(context).size.width * .05),
+                    width: MediaQuery.of(context).size.width * .1,
+                    height: MediaQuery.of(context).size.height * .03,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        color: const Color(0xFF489E67)),
+                    child: Center(
+                      child: Text(
+                        '\$${prov}',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 14,
+                            fontFamily: 'Gilroy',
+                            color: Colors.white),
+                      ),
+                    ),
+                  );
+                },
               ),
             ],
           ),
@@ -62,6 +74,4 @@ class ButtonCheckOut extends StatelessWidget {
       ),
     );
   }
-
-
 }

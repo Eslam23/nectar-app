@@ -30,10 +30,21 @@ class _BottomNavBarContainerState extends State<BottomNavBarContainer> {
     if (!mounted) return ;
     setState(() {
       scanBarcode = barcodeScanRes;
-      showDialog(context: context, builder: (context)=>AlertDialog(
-        title: const Text('Scan code'),
-        content: Center(
-          child: Text('Success process !!'),
+      showDialog(context: context, builder: (context)=>SizedBox(
+        height:80,
+        width: 60,
+        child: AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10)
+          ),
+          insetPadding: EdgeInsets.zero,
+          clipBehavior: Clip.antiAliasWithSaveLayer,
+          scrollable: false,
+          contentPadding: EdgeInsets.zero,
+          title: const Text('Scan code'),
+          content: Center(
+            child: Text('Success process !!'),
+          ),
         ),
       ));
     });
