@@ -2,9 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:untitled/core/api_actions/favourite_provider.dart';
 
-class ListViewFavourite extends StatelessWidget {
+import 'listtile_item.dart';
+
+class ListViewFavourite extends StatefulWidget {
   const ListViewFavourite({Key? key}) : super(key: key);
 
+  @override
+  State<ListViewFavourite> createState() => _ListViewFavouriteState();
+}
+
+class _ListViewFavouriteState extends State<ListViewFavourite> {
   @override
   Widget build(BuildContext context) {
     return  Consumer<FavouriteProvider>(
@@ -13,37 +20,78 @@ class ListViewFavourite extends StatelessWidget {
         if(prov.isNotEmpty){
           return Expanded(
               child: ListView.builder(
+                itemCount: prov.length,
                 itemBuilder: (context, index) {
-                  return Padding(
-                    padding:  EdgeInsets.only(bottom: MediaQuery.of(context).size.height *.04),
-                    child: ListTile(
-                      leading: Image.network( prov[index].image!.url!,fit: BoxFit.contain,width:MediaQuery.of(context).size.width*.2),
-                      title:  Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text( '${prov[index].title}',style:const TextStyle(fontFamily: 'fonts/Gilroy-Bold.ttf',fontSize: 16,fontWeight: FontWeight.w600),),
-
-                              SizedBox(height: MediaQuery.of(context).size.height*.005,),
-                              Text( '${prov[index].amount}',style:const TextStyle(fontSize:12 ,fontFamily:'fonts/Gilroy-Medium.ttf' ,color: Colors.grey),),
-                            ],
-                          ),
-
-                          Text( '${prov[index].price}',style:const TextStyle(fontSize: 16,fontFamily: 'Gilroy',fontWeight: FontWeight.w600),)
-                        ],
+                  final prod=prov[index];
+                  return Dismissible(
+                    key: Key('${prod}'),
+                    onDismissed: (DismissDirection direction){
+                      if(direction == DismissDirection.endToStart) {
+                        print('99999');
+                      }else{
+                        print('222222');
+                      }
+                      setState(() {
+                        Provider.of<FavouriteProvider>(context, listen: false)
+                            .deleteFavouriteProduct(prod);
+                      });
+                      },
+                    confirmDismiss: (DismissDirection direction)  {
+                      return  showDialog(
+                          context: context,
+                          builder: (ctx) {
+                            return AlertDialog(
+                              title: const Text('Delete Confiremation'),
+                              content: const Text(
+                                  'Are you sure you want to delete this item?'),
+                              actions: [
+                                InkWell(
+                                  onTap: () {
+                                    Navigator.of(context).pop(true);
+                                  },
+                                  child: Container(
+                                      width: 80,
+                                      height: 30,
+                                      color: Colors.red,
+                                      child: Center(
+                                          child: const Text(
+                                            'Delete',
+                                            style:
+                                            TextStyle(color: Colors.white),
+                                          ))),
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    Navigator.of(context).pop(false);
+                                  },
+                                  child: Container(
+                                      width: 80,
+                                      height: 30,
+                                      color: Colors.blue,
+                                      child: Center(
+                                          child: const Text(
+                                            'Cancel',
+                                            style:
+                                            TextStyle(color: Colors.white),
+                                          ))),
+                                ),
+                              ],
+                            );
+                          });
+                    },
+                    background: Container(
+                      color: Colors.red,
+                      child: Icon(
+                        Icons.delete,
+                        size: 40,
+                        color: Colors.white,
                       ),
-                      trailing:const Icon(Icons.arrow_forward_ios,size: 20,),
                     ),
+                    child:ListTileItem(product: prod,),
                   );
                 },
-                itemCount: prov.length,
               ));
         }else{
-         // return const SizedBox(height:20,width:20,child: CircularProgressIndicator(strokeWidth: 3,));
           return Expanded(child: const Center(child: Text('No favourite product !!',style: TextStyle(fontSize: 22,fontWeight: FontWeight.w400),),));
 
         }

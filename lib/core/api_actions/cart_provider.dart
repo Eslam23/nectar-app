@@ -7,26 +7,35 @@ class CartProvider extends ChangeNotifier {
   List<Products> get cartProduct => _cartProduct;
 
   addProduct(Products products) {
-    _cartProduct.add(products);
+    if(cartProduct.isNotEmpty){
+       bool check= _cartProduct.any((element) => element.title! == products.title)   ;
+      print('55555555');
+      if(check == false){
+        _cartProduct.add(products);
+        print('111111111');
+      }else{
+       incrementProdCartQuantity(products.title!);
+      }
+    }else{
+       _cartProduct.add(products);
+     print(  _cartProduct.length);
+       print('7777777777');
+    }
     notifyListeners();
   }
 
-  incrementProdCartQuantitt(String title) {
+  incrementProdCartQuantity(String title) {
     var prod = _cartProduct.firstWhere((e) => e.title == title);
     prod.quantity++;
     notifyListeners();
   }
 
-  decrementProdCartQuantitt(String title) {
+  decrementProdCartQuantity(String title) {
     var prod = _cartProduct.firstWhere((e) => e.title == title);
     prod.quantity--;
     notifyListeners();
   }
 
-  addAllProduct(List<Products> products) {
-    _cartProduct.addAll(products);
-    notifyListeners();
-  }
 
   deleteProduct(Products products) {
     _cartProduct.remove(products);
@@ -36,8 +45,15 @@ class CartProvider extends ChangeNotifier {
   int getCartAmount() {
     int cartAmount = 0;
     _cartProduct.forEach((prod) {
-      cartAmount += prod.price! * prod.quantity;
+      cartAmount += prod.newPrice! * prod.quantity;
     });
     return cartAmount;
   }
+ /* String getOneCart(){
+    String oneCart='';
+    _cartProduct.forEach((prod) {
+      oneCart +=prod.title!;
+    });
+    return oneCart;
+}*/
 }

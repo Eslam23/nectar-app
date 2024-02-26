@@ -61,7 +61,7 @@ class ItemContainer extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
                Text(
-               '\$${products.price}',
+               '\$${products.newPrice}',
                 style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
@@ -75,7 +75,10 @@ class ItemContainer extends StatelessWidget {
                   borderRadius: BorderRadius.circular(17),
                 ),
                 child:GestureDetector(
-                  onTap: (){Provider.of<CartProvider>(context,listen: false).addProduct(products);},
+                  onTap: (){
+
+                    Provider.of<CartProvider>(context,listen: false).addProduct(products);
+                  },
                   child: const Center(
                     child: Icon(
                       Icons.add,

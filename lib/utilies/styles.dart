@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'color_data.dart';
 
 class ListsData {
-  static const List<Map<String, dynamic>> listExclusive = [
+ /* static const List<Map<String, dynamic>> listExclusive = [
     {
       'image': 'asset/home/92f1ea7dcce3b5d06cd1b1418f9b9413 3.png',
       'name': 'Organic Banana',
@@ -44,7 +44,7 @@ class ListsData {
       'size': '1kg, Priceg',
       'price': 4.99
     },
-  ];
+  ];*/
   static const List<Map<String, dynamic>> listCategoryGroceries = [
     {
       'image':
@@ -170,7 +170,7 @@ class ListsData {
       'price': "\$4.99",
     },
   ];
-  static List<Map<String, dynamic>> listCart = [
+  /*static List<Map<String, dynamic>> listCart = [
     {
       'image': 'asset/cart/Group 6858.png',
       'name': 'Bell Pepper Red',
@@ -231,7 +231,7 @@ class ListsData {
       'size': '330ml, Price',
       'price': '\$4.99'
     },
-  ];
+  ];*/
   static List<Map<String, dynamic>> listSales = [
     {
       'title': RichText(

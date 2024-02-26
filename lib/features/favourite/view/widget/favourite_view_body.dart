@@ -35,18 +35,41 @@ class _FavouriteViewBodyState extends State<FavouriteViewBody> {
             height: 0,
           ),
           const ListViewFavourite(),
-          BasicContainer(
-            wid: MediaQuery.of(context).size.width * .84,
-            heig: MediaQuery.of(context).size.height * .09,
-            fun: () {
-              Provider.of<CartProvider>(context, listen: false)
-                  .addAllProduct(widget.products);
-            },
-            edgeInsets: EdgeInsets.only(
-              top: MediaQuery.of(context).size.height * .02,
-              bottom: MediaQuery.of(context).size.height * .02,
-            ),
-            txtButton: 'Add All To Cart',
+          Consumer<FavouriteProvider>(
+
+            builder: ( context,  value,  child) {
+              final prov=value.favouriteProduct;
+              if(prov.isNotEmpty){
+                return BasicContainer(
+                  wid: MediaQuery.of(context).size.width * .84,
+                  heig: MediaQuery.of(context).size.height * .09,
+                  fun: () {
+                    prov.forEach((item) {Provider.of<CartProvider>(context,listen: false).addProduct(item); });
+
+                    /*  Provider.of<CartProvider>(context, listen: false)
+                    .addAllProduct(widget.products);*/
+                  },
+                  edgeInsets: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.height * .02,
+                    bottom: MediaQuery.of(context).size.height * .02,
+                  ),
+                  txtButton: 'Add All To Cart',
+                );
+              }else{
+                return
+                BasicContainer(
+                  wid: MediaQuery.of(context).size.width * .84,
+                  heig: MediaQuery.of(context).size.height * .09,
+                  fun: () {},
+                  edgeInsets: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.height * .02,
+                    bottom: MediaQuery.of(context).size.height * .02,
+                  ),
+                  txtButton: 'Add All To Cart',
+                );
+              }
+          },
+
           ),
         ],
       ),

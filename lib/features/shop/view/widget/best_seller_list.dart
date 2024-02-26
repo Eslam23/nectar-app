@@ -1,7 +1,5 @@
-/*
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:untitled/core/api_actions/cart_provider.dart';
 
 import '../../../../core/api_actions/models.dart';
 import '../../../../core/api_actions/provider_method.dart';
@@ -28,18 +26,11 @@ class BestSellerList extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                             builder: (_) => ProductDetailsView(
-                              name: prov[index].title!,
-                              price: prov[index].price!,
-                              size: prov[index].amount!,
-                              img:prov[index].image!.url!,
+                              products: prov[index],
                             )));
                   },
                   child: ItemContainer(
-                    fun: (){Provider.of<CartProvider>(context,listen: false).addProduct(products);},
-                    img:  prov[index].image!.url!,
-                    price: prov[index].price!,
-                    size:  prov[index].amount!,
-                    name: prov[index].title!,
+                    products: prov[index],
                   ),
                 );
               },
@@ -49,11 +40,9 @@ class BestSellerList extends StatelessWidget {
           );
         }else{
           return const SizedBox(height:20,width:20,child: CircularProgressIndicator(strokeWidth: 3,));
-
         }
       },
 
     );
   }
 }
-*/

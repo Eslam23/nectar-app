@@ -82,41 +82,7 @@ class _ShopViewBodyState extends State<ShopViewBody> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * .025,
               ),
-              Consumer<ProviderProduct>(
-          builder: (context,value,index){
-            final prov=value.getBestSellerProducts();
-            if(prov.isNotEmpty){
-              return SizedBox(
-                width: double.infinity,
-                height: MediaQuery.of(context).size.height * .28,
-                child: ListView.builder(
-                  itemBuilder: (context, index) {
-                    return GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (_) => ProductDetailsView(
-                                  products: prov[index],
-                                )));
-                      },
-                      child: ItemContainer(products: prov[index],
-                        
-                      ),
-                    );
-                  },
-                  scrollDirection: Axis.horizontal,
-                  itemCount: prov.length,
-                ),
-              );
-            }else{
-              return const SizedBox(height:20,width:20,child: CircularProgressIndicator(strokeWidth: 3,));
-
-            }
-          },
-
-        ),
-           //  ExclusiveOfferList(products: widget.products,),
+             ExclusiveOfferList(products: widget.products,),
               SizedBox(
                 height: MediaQuery.of(context).size.height * .025,
               ),
@@ -127,40 +93,8 @@ class _ShopViewBodyState extends State<ShopViewBody> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * .025,
               ),
-        Consumer<ProviderProduct>(
-          builder: (context,value,index){
-            final prov=value.getExclusiveOffer();
-            if(prov.isNotEmpty){
-              return SizedBox(
-                width: double.infinity,
-                height: MediaQuery.of(context).size.height * .28,
-                child: ListView.builder(
-                  itemBuilder: (context, index) {
-                    return GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (_) => ProductDetailsView(
-                                 products: prov[index],
-                                )));
-                      },
-                      child: ItemContainer(
-                        products: prov[index],
-                     ),
-                    );
-                  },
-                  scrollDirection: Axis.horizontal,
-                  itemCount: prov.length,
-                ),
-              );
-            }else{
-              return const SizedBox(height:20,width:20,child: CircularProgressIndicator(strokeWidth: 3,));
-            }
-          },
 
-        ),
-             // BestSellerList(products:  widget.products,),
+              BestSellerList(products:  widget.products,),
               SizedBox(
                 height: MediaQuery.of(context).size.height * .025,
               ),

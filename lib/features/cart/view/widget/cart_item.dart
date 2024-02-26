@@ -14,26 +14,10 @@ class CartItem extends StatefulWidget {
 }
 
 class _CartItemState extends State<CartItem> {
-  int count = 1;
-
-  increase() {
-    setState(() {
-      count++;
-    });
-  }
-
-  decrease() {
-    if (count > 1) {
-      setState(() {
-        count--;
-      });
-    }
-    return count;
-  }
 
   @override
   Widget build(BuildContext context) {
-    int price = widget.products.price!;
+    int price = widget.products.newPrice!;
     int totalPrice = widget.products.newPrice! * widget.products.quantity;
 
     return Card(
@@ -90,9 +74,11 @@ class _CartItemState extends State<CartItem> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          Provider.of<CartProvider>(context, listen: false)
-                              .decrementProdCartQuantitt(
-                                  widget.products.title!);
+                          if(widget.products.quantity>1){
+                            Provider.of<CartProvider>(context, listen: false)
+                                .decrementProdCartQuantity(
+                                widget.products.title!);
+                          }
                         },
                         child: Container(
                           width: MediaQuery.of(context).size.width * .1,
@@ -106,7 +92,7 @@ class _CartItemState extends State<CartItem> {
                             child: Icon(
                               Icons.remove,
                               size: 24,
-                              color: count > 1
+                              color: widget.products.quantity > 1
                                   ? ColorsData.basicColor
                                   : Colors.grey,
                             ),
@@ -118,7 +104,7 @@ class _CartItemState extends State<CartItem> {
                       ),
                       Center(
                           child: Text(
-                        '${widget.products.newPrice}',
+                        '${ widget.products.quantity}',
                         style: const TextStyle(
                             fontWeight: FontWeight.w600,
                             fontFamily: 'Gilroy',
@@ -130,7 +116,7 @@ class _CartItemState extends State<CartItem> {
                       GestureDetector(
                         onTap: () {
                           Provider.of<CartProvider>(context, listen: false)
-                              .incrementProdCartQuantitt(
+                              .incrementProdCartQuantity(
                                   widget.products.title!);
                         },
                         child: Container(
@@ -166,122 +152,8 @@ class _CartItemState extends State<CartItem> {
         ),
       ),
     );
-    /* Card(
-      elevation: 5,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15),
-      ),
-      margin:
-      EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-      child: Row(
-        children: [
-          Container(
-            width: 120,
-            height: 125,
-            margin: EdgeInsets.only(right: 10),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(15),
-                    bottomLeft: Radius.circular(15)),
-                image: DecorationImage(
-                    image: NetworkImage(widget.products.image!.url!),
-                    fit: BoxFit.fitHeight)),
-          ),
-          Container(
-            width: MediaQuery.of(context).size.width * .6,
-            height: MediaQuery.of(context).size.height * .2,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment:
-              MainAxisAlignment.spaceEvenly,
-              children: [
-                Row(
-                  mainAxisAlignment:
-                  MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      widget.products.title!,
-                      style: TextStyle(
-                          color: Colors.black, fontSize: 22),
-                    ),
-                    Text(
-                      '\$${(widget.products.price)!*(count)}',
-                      style: TextStyle(
-                          color:
-                          Theme.of(context).primaryColor,
-                          fontSize: 20),
-                    )
-                  ],
-                ),
-                Text(
-                  '\$${widget.products.price}',
-                  style: TextStyle(
-                      color: Theme.of(context).primaryColor,
-                      fontSize: 20),
-                ),
-                Container(
-                  child: Row(
-                    children: [
-                      buildContainerPress(
-                        context,
-                        InkWell(
-                          onTap: (){increase();},
-                          child: Icon(
-                            Icons.add,
-                            color: Colors.white,
-                            size: 20,
-                          ),
-                        ),
-                        Theme.of(context).primaryColor,
-                      ),
-                      buildContainerPress(
-                          context,
-                          Text(
-                            '${count}',
-                            style: TextStyle(
-                              color: Theme.of(context)
-                                  .primaryColor,
-                              fontSize: 16,
-                            ),
-                          ),
-                          Colors.white),
-                      buildContainerPress(
-                        context,
-                        InkWell(
-                          onTap: (){decrease();},
-                          child: Icon(
-                            Icons.remove,
-                            color: Colors.white,
-                            size: 20,
-                          ),
-                        ),
-                        Theme.of(context).primaryColor,
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );*/
+
   }
 }
- /* Container buildContainerPress(
-      BuildContext context, Widget child, Color colContainer) {
-    return Container(
-      width: 30,
-      height: 30,
-      margin: EdgeInsets.only(right: 12, top: 10),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: colContainer,
-        border: Border.all(color: Theme.of(context).primaryColor),
-      ),
-      child: Center(
-        child: child,
-      ),
-    );
-  }*/
+
 

@@ -1,7 +1,5 @@
-/*
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:untitled/core/api_actions/cart_provider.dart';
 
 import '../../../../core/api_actions/models.dart';
 import '../../../../core/api_actions/provider_method.dart';
@@ -13,7 +11,7 @@ class ExclusiveOfferList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Consumer<ProviderProduct>(
+    return   Consumer<ProviderProduct>(
       builder: (context,value,index){
         final prov=value.getExclusiveOffer();
         if(prov.isNotEmpty){
@@ -21,6 +19,8 @@ class ExclusiveOfferList extends StatelessWidget {
             width: double.infinity,
             height: MediaQuery.of(context).size.height * .28,
             child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: prov.length,
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () {
@@ -28,31 +28,23 @@ class ExclusiveOfferList extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                             builder: (_) => ProductDetailsView(
-                              name:prov[index].title!,*/
-/* ListsData.listExclusive[index]['name'],*//*
-
-                              price: prov[index].price!,
-                              size: prov[index].amount!, img: prov[index].image!.url!,
+                              products: prov[index],
                             )));
                   },
-                  child: ItemContainer(
-                    img: prov[index].image!.url!,
-                    price:prov[index].price!,
-                    size: prov[index].amount!,
-                    name: prov[index].title!, fun: () {Provider.of<CartProvider>(context,listen: false).addProduct(products);  },
+                  child: ItemContainer(products: prov[index],
+
                   ),
                 );
               },
-              scrollDirection: Axis.horizontal,
-              itemCount: prov.length,
+
             ),
           );
         }else{
           return const SizedBox(height:20,width:20,child: CircularProgressIndicator(strokeWidth: 3,));
+
         }
       },
 
     );
   }
 }
-*/

@@ -19,6 +19,7 @@ class ProductDetailsViewBody extends StatefulWidget {
 }
 
 class _ProductDetailsViewBodyState extends State<ProductDetailsViewBody> {
+  bool choose=true;
 
   @override
   Widget build(BuildContext context) {
@@ -54,11 +55,19 @@ class _ProductDetailsViewBodyState extends State<ProductDetailsViewBody> {
                     fontFamily: 'fonts/Gilroy-Bold.ttf'),
               ),
              InkWell(
-               onTap: (){Provider.of<FavouriteProvider>(context,listen: false).addFavoriteProduct(widget.products);},
-               child: const Icon(
-                  Icons.favorite_border,
-                  size: 24,
-                ),
+               onTap: (){
+                 choose?
+                 Provider.of<FavouriteProvider>(context,listen: false).addFavoriteProduct(widget.products):Provider.of<FavouriteProvider>(context,listen: false).deleteFavouriteProduct(widget.products);
+                 setState(() {
+                   choose =! choose;
+                 });
+                 },
+               child: choose?Icon(Icons.favorite_border,size: 24,)
+               :Icon(
+                 Icons.favorite,
+                 size: 24,
+                 color: Colors.red,
+               ),
              ),
             ],
           ),
@@ -73,7 +82,7 @@ class _ProductDetailsViewBodyState extends State<ProductDetailsViewBody> {
           SizedBox(
             height: MediaQuery.of(context).size.height * .02,
           ),
-           CounterPrice(price: widget.products.price!,),
+           CounterPrice(price: widget.products.newPrice!,),
           SizedBox(
             height: MediaQuery.of(context).size.height * .05,
           ),
