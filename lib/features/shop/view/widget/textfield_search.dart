@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 class TextFieldSearch extends StatefulWidget {
   final Function(String value) fun;
 final Function()  nav;
-  const TextFieldSearch({Key? key, required this.fun, required this.nav,}) : super(key: key);
+final Widget child;
+  const TextFieldSearch({Key? key, required this.fun, required this.nav, required this.child,}) : super(key: key);
 
   @override
   State<TextFieldSearch> createState() => _TextFieldSearchState();
@@ -24,6 +25,7 @@ class _TextFieldSearchState extends State<TextFieldSearch> {
           contentPadding: EdgeInsets.zero,
             isDense: true,
             filled: true,
+            suffixIcon: widget.child,//Icon(Icons.settings_overscan),
             prefixIcon: Padding(
               padding:  EdgeInsets.only(right: MediaQuery.of(context).size.width*.04,left: MediaQuery.of(context).size.width*.04,top: MediaQuery.of(context).size.height*.01,bottom: MediaQuery.of(context).size.height*.01),
               child: Image.asset(

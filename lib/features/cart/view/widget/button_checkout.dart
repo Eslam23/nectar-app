@@ -6,7 +6,8 @@ import '../../../../utilies/color_data.dart';
 import 'bottom_sheet_cart.dart';
 
 class ButtonCheckOut extends StatefulWidget {
-  const ButtonCheckOut({Key? key}) : super(key: key);
+  final Function() fun;
+  const ButtonCheckOut({Key? key, required this.fun}) : super(key: key);
 
   @override
   State<ButtonCheckOut> createState() => _ButtonCheckOutState();
@@ -16,34 +17,28 @@ class _ButtonCheckOutState extends State<ButtonCheckOut> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        showModalBottomSheet(
-            context: context, builder: (ctx) => const BottomSheetCart());
-      },
+      onTap: widget.fun,
       child: Container(
         margin: EdgeInsets.only(
           top: MediaQuery.of(context).size.height * .02,
-          bottom: MediaQuery.of(context).size.height * .02,
+          bottom: MediaQuery.of(context).size.height * .04,
         ),
-        width: MediaQuery.of(context).size.width * .84,
-        height: MediaQuery.of(context).size.height * .09,
+        width: MediaQuery.of(context).size.width * .7,
+        height: MediaQuery.of(context).size.height * .07,
         decoration: BoxDecoration(
           color: ColorsData.basicColor,
           borderRadius: BorderRadius.circular(19),
         ),
         child: Center(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              const Text(
-                'Go to Checkout',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontFamily: 'Gilroy',
-                    fontWeight: FontWeight.w500),
-              ),
-              Consumer<CartProvider>(
+          child: const Text(
+            'Checkout',
+            style: TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+                fontFamily: 'Gilroy',
+                fontWeight: FontWeight.w500),
+          ),
+          /* Consumer<CartProvider>(
                 builder: (context, value, child) {
                   final prov = value.getCartAmount();
                   return Container(
@@ -67,9 +62,7 @@ class _ButtonCheckOutState extends State<ButtonCheckOut> {
                     ),
                   );
                 },
-              ),
-            ],
-          ),
+              ),*/
         ),
       ),
     );

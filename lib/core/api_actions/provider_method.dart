@@ -22,4 +22,16 @@ class ProviderProduct extends ChangeNotifier{
     final exploreOfferProds=_products.where((prod) =>prod.excuOffer == true ).toList();
     return exploreOfferProds;
   }
+
+  List<Products> getProductsByCategory(String title){
+    final  cateProducts = _products.where((prod) => prod.category == title).toList();
+    return cateProducts;
+  }
+
+
+
+  Products getScannedProduct(String title) {
+    final scannedProd = _products.firstWhere((e) => e.title == title);
+    return scannedProd;
+  }
  }

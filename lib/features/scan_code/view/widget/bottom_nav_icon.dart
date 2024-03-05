@@ -6,23 +6,27 @@ class BottomNavIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Icon(
-          iconData,
-          size: 30,
-          color: Colors.white,
-        ),
-        Text(
-          text,
-          style: const TextStyle(
-              color: Colors.white,
-              fontSize: 18,
-              fontWeight: FontWeight.w500),
-          textAlign: TextAlign.center,
-        )
-      ],
+    return SizedBox(
+      width: MediaQuery.of(context).size.width *.188,
+     height: MediaQuery.of(context).size.width *.145,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            iconData,
+            size: 30,
+            color: Colors.white,
+          ),
+          Text(
+            text,
+            style: const TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+                fontWeight: FontWeight.w500),
+            textAlign: TextAlign.center,
+          )
+        ],
+      ),
     );
   }
 }

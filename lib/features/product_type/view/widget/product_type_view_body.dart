@@ -1,8 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/core/api_actions/models.dart';
 
 import 'grid_product_type.dart';
-class ProductTypeViewBody extends StatelessWidget {
-  const ProductTypeViewBody({Key? key}) : super(key: key);
+class ProductTypeViewBody extends StatefulWidget {
+  final String title;
+  const ProductTypeViewBody({Key? key, required this.title}) : super(key: key);
+
+  @override
+  State<ProductTypeViewBody> createState() => _ProductTypeViewBodyState();
+}
+
+class _ProductTypeViewBodyState extends State<ProductTypeViewBody> {
+  late List<Products> products;
+
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +24,9 @@ class ProductTypeViewBody extends StatelessWidget {
           ListTile(
             trailing: Image.asset('asset/beverage/Group 6839.png',fit: BoxFit.contain,),
             leading:GestureDetector(onTap: (){Navigator.pop(context);},child:const Icon(Icons.arrow_back_ios,size: 20,)) ,
-            title:const Center(child: Text('Beverages',style: TextStyle(fontSize: 20,fontFamily: 'fonts/Gilroy-Bold.ttf',),)),
+            title: Center(child: Text(widget.title,style: TextStyle(fontSize: 20,fontFamily: 'fonts/Gilroy-Bold.ttf',),)),
           ),
-          const GridProductType(),
+           GridProductType(title: widget.title),
         ],
       ),
     );

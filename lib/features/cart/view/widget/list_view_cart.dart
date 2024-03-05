@@ -16,7 +16,6 @@ class _ListViewCartState extends State<ListViewCart> {
     return  Consumer<CartProvider>(
       builder: (context,value,child){
        final prov=value.cartProduct;
-
        if(prov.isNotEmpty){
          return Expanded(
            child: ListView.builder(

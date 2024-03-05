@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/features/shop/shop_view.dart';
 import 'package:untitled/tab_screen.dart';
 
 import '../../../../basic_container.dart';
-import '../../../sign_with/sign_with_view.dart';
+import '../../../../carrot_image.dart';
 
 class PrevColumn extends StatelessWidget {
   const PrevColumn({Key? key}) : super(key: key);
@@ -16,12 +15,7 @@ class PrevColumn extends StatelessWidget {
       right: 0,
       child: Column(
         children: [
-          Image.asset(
-            'asset/white.png',
-            fit: BoxFit.cover,
-            width: 48,
-            height: 56,
-          ),
+          CarrotImage(wid: MediaQuery.of(context).size.width *.3, heig: MediaQuery.of(context).size.width *.15,),
           SizedBox(
             height: MediaQuery.of(context).size.height * .04,
           ),

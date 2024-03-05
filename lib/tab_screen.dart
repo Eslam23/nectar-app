@@ -2,10 +2,8 @@ import 'dart:io';
 
 import 'package:bottom_bar_page_transition/bottom_bar_page_transition.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:untitled/core/api_actions/favourite_provider.dart';
+
 import 'package:untitled/core/api_actions/models.dart';
-import 'package:untitled/features/update_account/update_account_view.dart';
 import 'package:untitled/utilies/color_data.dart';
 import 'features/account/account_view.dart';
 import 'features/cart/cart_view.dart';
@@ -14,11 +12,10 @@ import 'features/favourite/favourite_view.dart';
 import 'features/shop/shop_view.dart';
 
 class TabScreen extends StatefulWidget {
-  //final Products products;
   late int? currentPageByIndex;
   TabScreen({
     Key? key,
-    this.currentPageByIndex /*, required this.products*/,
+    this.currentPageByIndex ,
   }) : super(key: key);
 
   @override
@@ -28,10 +25,10 @@ class TabScreen extends StatefulWidget {
 class _TabScreenState extends State<TabScreen> {
   static const List<String> pageName = [
     'Shop',
-    'Explore',
+    'Search',
     'Cart',
-    'Favourite',
-    'Account',
+    'Heart',
+    'Setting',
   ];
   List<dynamic> pages = [
     ShopView(

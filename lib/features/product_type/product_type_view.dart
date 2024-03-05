@@ -3,7 +3,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:untitled/features/product_type/view/widget/product_type_view_body.dart';
 class ProductTypeView extends StatelessWidget {
-  const ProductTypeView({Key? key}) : super(key: key);
+  final String title;
+  const ProductTypeView({Key? key, required this.title}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -11,8 +13,8 @@ class ProductTypeView extends StatelessWidget {
       onWillPop: ()async{
         return exit(0);
       },
-      child: const Scaffold(
-        body: ProductTypeViewBody(),
+      child:  Scaffold(
+        body: ProductTypeViewBody(title: title),
       ),
     );
   }

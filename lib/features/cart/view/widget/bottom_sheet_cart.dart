@@ -1,4 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:untitled/utilies/color_data.dart';
 
 import '../../../../basic_container.dart';
 import 'check_order.dart';
@@ -7,16 +10,81 @@ class BottomSheetCart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<Map<String,dynamic>> listText=[
+      {'title':Text('Subtotal',style: TextStyle(color: Colors.grey,fontSize: 16,fontWeight: FontWeight.w400),),'price':'\$${15.39}'},
+      {'title':Text('Tax',style: TextStyle(color: Colors.grey,fontSize: 16,fontWeight: FontWeight.w400),),'price':'\$${1.39}'},
+      {'title':Text('Delivery',style: TextStyle(color: Colors.grey,fontSize: 16,fontWeight: FontWeight.w400),),'price':'\$${1.39}'},
+      {'title':Text('Total',style: TextStyle(color: Colors.black,fontSize: 16,fontWeight: FontWeight.w400),),'price':'\$${18.39}'},
+    ];
     return Container(
+      padding: EdgeInsets.only(top: 15),
       width: double.infinity,
       height: MediaQuery.of(context).size.height * .65,
-      decoration:const BoxDecoration(
-        borderRadius: BorderRadius.only(
-          topRight: Radius.circular(30),
-          topLeft: Radius.circular(30),
-        ),
+      child:Column(
+        children: [
+          SizedBox(
+            height: 50,
+            child: TextFormField(
+              decoration: InputDecoration(
+                contentPadding:EdgeInsets.only(right: 10,left: 10) ,
+
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15),
+                  borderSide: BorderSide.none
+                ),
+                filled: true,
+                fillColor: Colors.grey.withOpacity(.3),
+                hintText: 'Enter promo code',
+
+                suffix:Container(
+alignment: Alignment.center,
+                  width: 60,
+                  height: 30,
+                  decoration: BoxDecoration(
+                    color: ColorsData.basicColor,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Center(child: Text('Apply',style: TextStyle(color: Colors.white),textAlign: TextAlign.center,)),
+                ),
+                prefix:  Padding(
+                  padding: const EdgeInsets.only(right: 8.0,top: 0,bottom: 0),
+                  child: Icon(Icons.qr_code,size: 20,),
+                ),
+              ),
+            ),
+          ),
+          Expanded(
+            child: ListView.builder(itemBuilder: (context,index){
+              return Column(
+                children: [
+                  ListTile(
+                    trailing: listText[index]['price'],
+                    leading: listText[index]['title'],
+                  ),
+                  Divider(
+                    endIndent: 15,
+                    indent: 15,
+                  ),
+                ],
+              );
+            },itemCount: listText.length,),
+          ),
+
+          Center(
+            child: BasicContainer(
+                wid: MediaQuery.of(context).size.width * .7,
+                heig: MediaQuery.of(context).size.height * .06,
+                fun: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (_)=>const CheckOrder()));
+                },
+                edgeInsets: EdgeInsets.only(
+bottom: MediaQuery.of(context).size.height * .02 ,
+                    top: MediaQuery.of(context).size.height * .02),
+                txtButton: 'Checkout'),
+          ),
+        ],
       ),
-      child: Column(
+      /* Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
@@ -169,20 +237,9 @@ class BottomSheetCart extends StatelessWidget {
                   color: Colors.grey),
             ),
           ),
-          Center(
-            child: BasicContainer(
-                wid: MediaQuery.of(context).size.width * .84,
-                heig: MediaQuery.of(context).size.height * .06,
-                fun: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (_)=>const CheckOrder()));
-                },
-                edgeInsets: EdgeInsets.only(
 
-                    top: MediaQuery.of(context).size.height * .02),
-                txtButton: 'Place Order'),
-          ),
         ],
-      ),
+      ),*/
     );
   }
 }

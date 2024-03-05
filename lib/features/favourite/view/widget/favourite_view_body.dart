@@ -35,7 +35,7 @@ class _FavouriteViewBodyState extends State<FavouriteViewBody> {
             height: 0,
           ),
           const ListViewFavourite(),
-          Consumer<FavouriteProvider>(
+          /*Consumer<FavouriteProvider>(
 
             builder: ( context,  value,  child) {
               final prov=value.favouriteProduct;
@@ -46,8 +46,6 @@ class _FavouriteViewBodyState extends State<FavouriteViewBody> {
                   fun: () {
                     prov.forEach((item) {Provider.of<CartProvider>(context,listen: false).addProduct(item); });
 
-                    /*  Provider.of<CartProvider>(context, listen: false)
-                    .addAllProduct(widget.products);*/
                   },
                   edgeInsets: EdgeInsets.only(
                     top: MediaQuery.of(context).size.height * .02,
@@ -70,7 +68,7 @@ class _FavouriteViewBodyState extends State<FavouriteViewBody> {
               }
           },
 
-          ),
+          ),*/
         ],
       ),
     );

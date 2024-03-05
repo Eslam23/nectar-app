@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:untitled/core/api_actions/category/provider_method.dart';
+import 'package:untitled/core/api_actions/offer/provider_offer.dart';
 import 'package:untitled/core/api_actions/provider_method.dart';
 
 import 'core/api_actions/cart_provider.dart';
@@ -12,15 +14,31 @@ void main(){
           ChangeNotifierProvider(create:(context)=> ProviderProduct()),
           ChangeNotifierProvider(create: (context) => CartProvider()),
           ChangeNotifierProvider(create: (context) => FavouriteProvider()),
+          ChangeNotifierProvider(create: (context) => ProviderCategories()),
+          ChangeNotifierProvider(create: (context) => ProviderOffer()),
         ],
       child:MyApp() ,
     )
 
   );
 }
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+   @override
+   void initState() {
+     super.initState();
+     WidgetsFlutterBinding.ensureInitialized().addPostFrameCallback((timeStamp) {
+       Provider.of<ProviderProduct>(context,listen: false).fetchAllProducts();
+       Provider.of<ProviderCategories>(context,listen: false).fetchAllCategory();
+       Provider.of<ProviderOffer>(context,listen: false).getAllOffers();
+     });
+   }
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
@@ -28,5 +46,5 @@ class MyApp extends StatelessWidget {
       home: SplashView(),
     );
   }
-
 }
+

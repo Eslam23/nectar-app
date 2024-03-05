@@ -10,8 +10,8 @@ class CarrotImage extends StatelessWidget {
         child: Image.asset(
           'asset/Group.png',
           fit: BoxFit.contain,
-          width: wid,/*MediaQuery.of(context).size.width * .1,*/
-          height: heig,/*MediaQuery.of(context).size.height * .2,*/
+          width: wid,
+          height: heig,
         ));
 
   }

@@ -4,8 +4,8 @@ import 'package:untitled/utilies/styles.dart';
 import '../../../product_type/product_type_view.dart';
 
 class GridItems extends StatelessWidget {
-
-  const GridItems({Key? key,}) : super(key: key);
+final String title;
+  const GridItems({Key? key, required this.title,}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class GridItems extends StatelessWidget {
           ),
           itemBuilder: (context, index) {
             return GestureDetector(
-            onTap: (){Navigator.push(context, MaterialPageRoute(builder: (_)=>const ProductTypeView()));}
+            onTap: (){Navigator.push(context, MaterialPageRoute(builder: (_)=> ProductTypeView(title:title ,)));}
             ,child: Container(
                 padding: EdgeInsets.only(
                   left: MediaQuery.of(context).size.width * .1,

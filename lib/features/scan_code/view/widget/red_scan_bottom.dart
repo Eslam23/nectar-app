@@ -18,7 +18,7 @@ class _RedScanBottomState extends State<RedScanBottom> {
       children: [
         CircleAvatar(
           backgroundColor: Colors.white,
-          radius: MediaQuery.of(context).size.width *.15,
+          radius: MediaQuery.of(context).size.width *.14,
         ),
         Positioned(
           top: MediaQuery.of(context).size.height *.005,

@@ -31,6 +31,8 @@ class _CounterPriceState extends State<CounterPrice> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
+        Text('\$${(widget.price*count).toStringAsFixed(2)}',style: TextStyle(fontSize: 22,fontFamily: 'fonts/Gilroy-Bold.ttf',fontWeight: FontWeight.w600,color: ColorsData.basicColor),),
+
         SizedBox(
           height: MediaQuery.of(context).size.height * .05,
           child: Row(
@@ -76,7 +78,6 @@ class _CounterPriceState extends State<CounterPrice> {
             ],
           ),
         ),
-        Text('\$${(widget.price*count).toStringAsFixed(2)}',style:const TextStyle(fontSize: 22,fontFamily: 'fonts/Gilroy-Bold.ttf',fontWeight: FontWeight.w600),)
       ],
     );
   }
