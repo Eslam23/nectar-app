@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/features/mobile_number/mobile_number_view.dart';
+import 'package:untitled/features/sign_with/sign_with_view.dart';
 import 'package:untitled/tab_screen.dart';
 
 import '../../../../basic_container.dart';
@@ -15,7 +17,10 @@ class PrevColumn extends StatelessWidget {
       right: 0,
       child: Column(
         children: [
-          CarrotImage(wid: MediaQuery.of(context).size.width *.3, heig: MediaQuery.of(context).size.width *.15,),
+          CarrotImage(
+            wid: MediaQuery.of(context).size.width * .3,
+            heig: MediaQuery.of(context).size.width * .15,
+          ),
           SizedBox(
             height: MediaQuery.of(context).size.height * .04,
           ),
@@ -46,11 +51,12 @@ class PrevColumn extends StatelessWidget {
             wid: MediaQuery.of(context).size.width * .84,
             heig: MediaQuery.of(context).size.height * .09,
             fun: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (_) => TabScreen(currentPageByIndex: 0,)));
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (_) => SignWithView()));
             },
             edgeInsets: EdgeInsets.only(
-                bottom: MediaQuery.of(context).size.height * .02), txtButton: 'Get Started',
+                bottom: MediaQuery.of(context).size.height * .02),
+            txtButton: 'Get Started',
           ),
         ],
       ),

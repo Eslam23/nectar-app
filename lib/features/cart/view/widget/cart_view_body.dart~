@@ -1,0 +1,176 @@
+import 'package:easy_stepper/easy_stepper.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+
+import 'bottom_sheet_cart.dart';
+import 'button_checkout.dart';
+import 'list_view_cart.dart';
+
+class CartViewBody extends StatefulWidget {
+  const CartViewBody({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  State<CartViewBody> createState() => _CartViewBodyState();
+}
+
+class _CartViewBodyState extends State<CartViewBody> {
+
+  int activeStep = 0;
+  int activeStep2 = 0;
+  int reachedStep = 0;
+  int upperBound = 5;
+  double progress = 0.2;
+  Set<int> reachedSteps = <int>{0, 2, 4, 5};
+  final dashImages = [
+
+  ];
+
+  void increaseProgress() {
+    if (progress < 1) {
+      setState(() => progress += 0.2);
+    } else {
+      setState(() => progress = 0);
+    }
+  }
+
+/*  int currentStep=0;
+  continueStep(){
+   if(currentStep<2){
+     setState(() {
+       currentStep=currentStep +1;
+     });
+   }
+  }
+  cancelStep(){
+    if(currentStep>0){
+      setState(() {
+        currentStep=currentStep-1;
+      });
+    }
+  }
+  tapStep(int value){
+    setState(() {
+      currentStep=value;
+    });
+  }
+ Widget controlBuilder(context,details){
+    return  Align(
+      alignment: Alignment.bottomCenter,
+      child: ButtonCheckOut(
+        fun: () {
+          if(currentStep<2){
+            setState(() {
+              currentStep=currentStep +1;
+            });
+          }
+          showModalBottomSheet(
+              context: context, builder: (ctx) => const BottomSheetCart());
+        },
+      ),
+    );
+ }*/
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * .05),
+      child: Column(
+        children: [
+       /*   const Text(
+            'My Cart',
+            style: TextStyle(
+                fontSize: 20,
+                fontFamily: 'fonts/Gilroy-Bold.ttf',
+                fontWeight: FontWeight.w600),
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * .03,
+          ),
+          const Divider(),*/
+          EasyStepper(
+              activeStep: activeStep,
+              steps: [
+                Step(title: title, content: Text('111111')),
+              ],),
+         /* Flexible(
+            fit: FlexFit.loose,
+            child: Stepper(
+              physics: ScrollPhysics(),
+              elevation: 0,
+              //stepIconBuilder: ,
+              type: StepperType.horizontal,
+              currentStep: currentStep,
+              onStepContinue: continueStep,
+              onStepCancel: cancelStep,
+              onStepTapped: tapStep,
+              controlsBuilder: controlBuilder,
+              steps: [
+                Step(
+
+                  state: currentStep>=0?StepState.complete:StepState.disabled,
+                  isActive: currentStep>=0,
+                  title: Text('S1'),
+                  content: Column(
+                    children: [
+                      Text('data'),
+                      Text('data'),
+                      Text('data'),
+                      Text('data'),
+                      Text('data'),
+                      Text('data'),
+                      Text('data'),
+                      Text('data'),
+                      Text('data'),
+                      Text('data'),
+                      Text('data'),
+                      Text('data'),
+                      Text('data'),
+                      Text('data'),
+                      Text('data'),
+                    *//*  ListViewCart(),
+              ButtonCheckOut(
+                fun: () {
+                  if(currentStep<2){
+                    setState(() {
+                      currentStep=currentStep +1;
+                    });
+                  }
+                  showModalBottomSheet(
+                      context: context, builder: (ctx) => const BottomSheetCart());
+                },
+              ),*//*
+                    ],
+                  ),
+                ),
+                Step(
+                  state: currentStep>=1?StepState.complete:StepState.disabled,
+                  isActive:currentStep>=1,
+                  title: Text('S2'),
+                  content: Column(
+                    children: [
+                    ],
+                  ),
+                ),
+                Step(
+                  isActive:currentStep>=2,
+                  state: currentStep>=2?StepState.complete:StepState.disabled,
+                  title: Text('S3'),
+                  content: Column(
+                    children: [
+                  
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),*/
+        ],
+      ),
+    );
+  }
+}
+
+
+

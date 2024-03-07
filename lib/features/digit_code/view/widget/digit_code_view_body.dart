@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:untitled/utilies/color_data.dart';
 
 class DigitCodeViewBody extends StatelessWidget {
   const DigitCodeViewBody({Key? key}) : super(key: key);
@@ -46,20 +47,103 @@ class DigitCodeViewBody extends StatelessWidget {
                 color: Colors.grey),
           ),
           SizedBox(
-            height: MediaQuery.of(context).size.height * .012,
+            height: MediaQuery.of(context).size.height * .02,
           ),
-          TextField(
-            maxLength: 4,
-            keyboardType: TextInputType.number,
-            inputFormatters: <TextInputFormatter>[
-              FilteringTextInputFormatter.digitsOnly
-            ],
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(borderSide: BorderSide()),
-              hintText: '- - - -',
-              labelStyle: TextStyle(
-                fontSize: 18,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              SizedBox(
+                width: MediaQuery.of(context).size.width * .18,
+                height: MediaQuery.of(context).size.height * .09,
+                child: TextFormField(
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.number,
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.digitsOnly,
+                    LengthLimitingTextInputFormatter(1),
+                  ],
+                  textAlign: TextAlign.center,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(14)),
+                    hintText: '-',
+                  ),
+                ),
               ),
+              SizedBox(
+                width: MediaQuery.of(context).size.width * .18,
+                height: MediaQuery.of(context).size.height * .09,
+                child: TextFormField(
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.number,
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.digitsOnly,
+                    LengthLimitingTextInputFormatter(1),
+                  ],
+                  textAlign: TextAlign.center,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(14)),
+                    hintText: '-',
+                  ),
+                ),
+              ),
+              SizedBox(
+                width: MediaQuery.of(context).size.width * .18,
+                height: MediaQuery.of(context).size.height * .09,
+                child: TextFormField(
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.number,
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.digitsOnly,
+                    LengthLimitingTextInputFormatter(1),
+                  ],
+                  textAlign: TextAlign.center,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(14)),
+                    hintText: '-',
+                  ),
+                ),
+              ),
+              SizedBox(
+                width: MediaQuery.of(context).size.width * .18,
+                height: MediaQuery.of(context).size.height * .09,
+                child: TextFormField(
+                  textInputAction: TextInputAction.done,
+                  keyboardType: TextInputType.number,
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.digitsOnly,
+                    LengthLimitingTextInputFormatter(1),
+                  ],
+                  textAlign: TextAlign.center,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(14)),
+                    hintText: '-',
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Center(
+            child: RichText(
+              text: TextSpan(children: [
+                TextSpan(
+                    text: 'Didn’t receive the code? ',
+                    style: TextStyle(
+                        height: 3,
+                        color: Color(0xFF181725),
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400)),
+                TextSpan(
+                    text: 'Resend',
+                    style: TextStyle(
+                        color: ColorsData.basicColor,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400,
+                        height: 3))
+              ]),
             ),
           ),
         ],

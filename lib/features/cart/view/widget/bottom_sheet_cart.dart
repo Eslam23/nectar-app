@@ -5,6 +5,7 @@ import 'package:untitled/utilies/color_data.dart';
 
 import '../../../../basic_container.dart';
 import 'check_order.dart';
+import 'complete_payment.dart';
 class BottomSheetCart extends StatelessWidget {
   const BottomSheetCart({Key? key}) : super(key: key);
 
@@ -58,7 +59,7 @@ alignment: Alignment.center,
               return Column(
                 children: [
                   ListTile(
-                    trailing: listText[index]['price'],
+                    trailing:Text( listText[index]['price'],style: TextStyle(fontWeight: FontWeight.w400,fontSize: 16),),
                     leading: listText[index]['title'],
                   ),
                   Divider(
@@ -69,13 +70,12 @@ alignment: Alignment.center,
               );
             },itemCount: listText.length,),
           ),
-
           Center(
             child: BasicContainer(
                 wid: MediaQuery.of(context).size.width * .7,
                 heig: MediaQuery.of(context).size.height * .06,
                 fun: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (_)=>const CheckOrder()));
+                  Navigator.push(context, MaterialPageRoute(builder: (_)=>const CompletePayment()));
                 },
                 edgeInsets: EdgeInsets.only(
 bottom: MediaQuery.of(context).size.height * .02 ,
